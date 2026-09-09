@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-gold: #c5a880;
+    --color-cream: #f6f4ee;
+    --color-black: #080808;
+    --color-surface: #141414;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #080808;
+    color: #f6f4ee;
+  }
+
+  body {
+    overflow-x: hidden;
+    background-color: #080808;
+    color: #f6f4ee;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom Luxury Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0d0d0d;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c5a880;
+  }
+}
+
+/* Editorial Typography Helpers */
+.font-serif-display {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+}
+
+.font-editorial-sans {
+  font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+}
+
+/* Subtle Film Grain Overlay */
+.editorial-grain {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Outlined Big Text */
+.text-outline {
+  -webkit-text-stroke: 1px rgba(246, 244, 238, 0.25);
+  color: transparent;
+  transition: all 0.5s ease;
+}
+
+.text-outline:hover {
+  -webkit-text-stroke: 1px #c5a880;
+  color: rgba(197, 168, 128, 0.1);
+}
+
+/* Line clamps & luxury borders */
+.border-subtle {
+  border-color: rgba(246, 244, 238, 0.08);
+}
+
+.border-subtle-hover:hover {
+  border-color: rgba(197, 168, 128, 0.35);
+}
+
+/* Smooth Image Transitions */
+.luxury-image-hover {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-image-hover:hover {
+  transform: scale(1.035);
+}
