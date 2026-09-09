@@ -13,7 +13,7 @@ const CATEGORIES = [
 
 const STATS = [
   { value: "5+", label: "Years Experience", description: "Dedicated professional modeling career" },
-  { value: "50+", label: "Photoshoots", description: "Editorials, lookbooks & campaigns" },
+  { value: "51+", label: "Photoshoots", description: "Editorials, lookbooks & campaigns" },
   { value: "20+", label: "Brands Collaborated", description: "International & luxury fashion houses" },
   { value: "10+", label: "Awards & Honors", description: "Runway & editorial industry accolades" },
 ];
