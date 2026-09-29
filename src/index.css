@@ -3,82 +3,33 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --color-bg: #F7F5F2;
-    --color-white: #FFFFFF;
-    --color-black: #111111;
-    --color-gray: #777777;
-    --color-accent: #8B7355;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    font-family: 'Inter', sans-serif;
-    background-color: #F7F5F2;
-    color: #111111;
-  }
-
-  body {
-    overflow-x: hidden;
-    background-color: #F7F5F2;
-    color: #111111;
-    text-rendering: optimizeLegibility;
+  html, body {
+    background-color: #FFAD5A;
+    color: #171717;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Editorial Minimal Scrollbar */
+  /* Minimal Scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #F7F5F2;
+    background: #FFAD5A;
   }
   ::-webkit-scrollbar-thumb {
-    background: #D8D2C8;
+    background: #D88E43;
     border-radius: 3px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #8B7355;
   }
 }
 
-/* Editorial Typography */
-.font-serif-display {
+.font-serif-quote {
   font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
 }
 
-.font-editorial-heading {
-  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
-}
-
-.font-editorial-sans {
-  font-family: 'Inter', 'Montserrat', sans-serif;
-}
-
-/* Editorial Outlined Text Effect */
-.text-outline-editorial {
-  -webkit-text-stroke: 1px rgba(17, 17, 17, 0.15);
-  color: transparent;
-  transition: all 0.5s ease;
-}
-
-.text-outline-editorial:hover {
-  -webkit-text-stroke: 1px #8B7355;
-  color: rgba(139, 115, 85, 0.05);
-}
-
-/* Subtle Film Texture */
-.editorial-texture {
-  background-image: radial-gradient(rgba(17, 17, 17, 0.02) 1px, transparent 0);
-  background-size: 20px 20px;
-}
-
-/* Smooth Image Scale */
-.editorial-image-hover {
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.editorial-image-hover:hover {
-  transform: scale(1.03);
+.font-name-sans {
+  font-family: 'Montserrat', 'Inter', -apple-system, sans-serif;
 }
