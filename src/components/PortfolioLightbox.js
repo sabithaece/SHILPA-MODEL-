@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
-export default function GalleryLightbox({
+export default function PortfolioLightbox({
   isOpen,
   activeItem,
   onClose,
@@ -42,7 +42,7 @@ export default function GalleryLightbox({
         className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 sm:p-8"
         onClick={onClose}
       >
-        {/* Top Control Bar */}
+        {/* Top Bar */}
         <div
           className="absolute top-0 left-0 right-0 p-6 flex items-center justify-between z-50 border-b border-white/10"
           onClick={(e) => e.stopPropagation()}
@@ -90,7 +90,7 @@ export default function GalleryLightbox({
           <ChevronRight className="w-6 h-6" />
         </button>
 
-        {/* Central Modal Content */}
+        {/* Modal Content */}
         <motion.div
           key={activeItem.id}
           initial={{ opacity: 0, scale: 0.94 }}
@@ -100,7 +100,6 @@ export default function GalleryLightbox({
           className="relative max-w-4xl max-h-[85vh] w-full flex flex-col md:flex-row items-center bg-[#F7F5F2] border border-editorial-border overflow-hidden shadow-2xl"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Image Container */}
           <div className="w-full md:w-3/5 h-[50vh] md:h-[75vh] bg-black relative overflow-hidden flex items-center justify-center">
             <img
               src={activeItem.image}
@@ -110,7 +109,6 @@ export default function GalleryLightbox({
             />
           </div>
 
-          {/* Details Panel */}
           <div className="w-full md:w-2/5 p-8 md:p-10 flex flex-col justify-between h-auto md:h-[75vh] bg-[#F7F5F2] overflow-y-auto">
             <div>
               <div className="flex items-center space-x-2 text-editorial-accent text-xs uppercase tracking-editorial font-sans mb-3 font-semibold">

@@ -15,15 +15,14 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen w-full flex flex-col justify-between pt-28 pb-10 px-6 md:px-12 lg:px-16 overflow-hidden bg-editorial-bg"
     >
-      {/* Editorial Decorative Background Elements */}
+      {/* Background Decorative Watermark */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
-        {/* Soft Magazine Watermark */}
         <span className="absolute -top-12 -right-8 text-[20vw] font-serif-display font-light leading-none tracking-widest text-outline-editorial select-none opacity-20 hidden lg:block">
           {portfolioData.modelInfo.name}
         </span>
       </div>
 
-      {/* Top Magazine Header Info Bar */}
+      {/* Top Header Bar */}
       <div className="relative z-10 w-full flex flex-col sm:flex-row items-start sm:items-end justify-between border-b border-editorial-border pb-5 gap-3">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -52,13 +51,13 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Central Editorial Split-Screen Composition */}
+      {/* Central Editorial Split-Screen */}
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center my-auto py-8 lg:py-12">
-        {/* Left Column: Bold Editorial Typography & Philosophy */}
+        {/* Left Column: Bold Typography & CTAs */}
         <motion.div
           initial={{ opacity: 0, x: -25 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-6 flex flex-col justify-center order-2 lg:order-1"
         >
           <div className="inline-flex items-center space-x-2 text-editorial-accent text-xs font-sans tracking-editorial uppercase mb-4 font-semibold">
@@ -84,7 +83,7 @@ export default function Hero() {
           {/* Action Buttons */}
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <button
-              onClick={() => scrollToSection('gallery')}
+              onClick={() => scrollToSection('portfolio')}
               className="px-8 py-4 bg-editorial-black text-white hover:bg-editorial-accent transition-all duration-300 font-sans text-xs uppercase tracking-editorial font-medium flex items-center space-x-3 group shadow-md"
             >
               <span>EXPLORE PORTFOLIO</span>
@@ -100,15 +99,15 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Right Column: Large Fashion Model Photograph */}
+        {/* Right Column: Model Photograph */}
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-6 flex justify-center lg:justify-end order-1 lg:order-2"
         >
           <div className="relative w-full max-w-md lg:max-w-lg">
-            {/* Subtle Editorial Accent Line */}
+            {/* Editorial Accent Corners */}
             <div className="absolute -top-3 -left-3 w-10 h-10 border-t-2 border-l-2 border-editorial-accent pointer-events-none z-20" />
             <div className="absolute -bottom-3 -right-3 w-10 h-10 border-b-2 border-r-2 border-editorial-accent pointer-events-none z-20" />
 
@@ -123,10 +122,8 @@ export default function Hero() {
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               />
 
-              {/* Bottom Subtle Gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
 
-              {/* Bottom Caption inside Image */}
               <div className="absolute bottom-5 left-6 right-6 flex items-end justify-between text-white z-10 pointer-events-none">
                 <div>
                   <span className="text-[10px] tracking-editorial uppercase text-white/90 font-sans block">
@@ -147,7 +144,7 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Floating Tag */}
+            {/* Floating Experience Badge */}
             <div className="absolute -bottom-5 -left-5 bg-white border border-editorial-border p-4 shadow-xl hidden sm:flex items-center space-x-3">
               <div className="w-9 h-9 rounded-full bg-editorial-bg border border-editorial-accent flex items-center justify-center font-serif-display text-editorial-accent text-lg italic font-medium">
                 S
@@ -168,7 +165,7 @@ export default function Hero() {
       {/* Bottom Bar: Scroll to Explore */}
       <div className="relative z-10 w-full flex items-center justify-between border-t border-editorial-border pt-5">
         <div className="text-[11px] tracking-editorial text-editorial-gray uppercase font-sans hidden sm:block">
-          01 / 08 — HOME
+          01 / 04 — HOME
         </div>
 
         <button

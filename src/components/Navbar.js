@@ -6,12 +6,7 @@ import { portfolioData } from '../data/portfolioData';
 const NAV_ITEMS = [
   { label: 'HOME', href: '#home' },
   { label: 'ABOUT', href: '#about' },
-  { label: 'PROFILE', href: '#profile' },
-  { label: 'EXPERIENCE', href: '#experience' },
-  { label: 'GALLERY', href: '#gallery' },
-  { label: 'SERVICES', href: '#services' },
-  { label: 'BEHIND THE LENS', href: '#behind-the-lens' },
-  { label: 'ACHIEVEMENTS', href: '#achievements' },
+  { label: 'PORTFOLIO', href: '#portfolio' },
   { label: 'CONTACT', href: '#contact' },
 ];
 
@@ -22,7 +17,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
+      if (window.scrollY > 40) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -85,8 +80,8 @@ export default function Navbar() {
             </span>
           </a>
 
-          {/* Right Desktop Nav Menu */}
-          <nav className="hidden xl:flex items-center space-x-7">
+          {/* Right Desktop Nav Menu: Strictly 4 Links */}
+          <nav className="hidden md:flex items-center space-x-10">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.href.substring(1);
               return (
@@ -94,7 +89,7 @@ export default function Navbar() {
                   key={item.label}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className={`relative py-1 text-[11px] tracking-editorial uppercase transition-all duration-300 font-sans font-medium ${
+                  className={`relative py-1 text-xs tracking-editorial uppercase transition-all duration-300 font-sans font-medium ${
                     isActive
                       ? 'text-editorial-accent font-semibold'
                       : 'text-editorial-black/75 hover:text-editorial-black'
@@ -103,7 +98,7 @@ export default function Navbar() {
                   <span>{item.label}</span>
                   {isActive && (
                     <motion.span
-                      layoutId="activeEditorialNav"
+                      layoutId="activeCleanNav"
                       className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-editorial-accent"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
@@ -127,7 +122,7 @@ export default function Navbar() {
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 text-editorial-black hover:text-editorial-accent focus:outline-none transition-colors"
+              className="md:hidden p-2 text-editorial-black hover:text-editorial-accent focus:outline-none transition-colors"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -143,8 +138,8 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-50 bg-[#F7F5F2] flex flex-col justify-between px-8 py-8 xl:hidden overflow-y-auto"
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 z-50 bg-[#F7F5F2] flex flex-col justify-between px-8 py-8 md:hidden overflow-y-auto"
           >
             {/* Drawer Header */}
             <div className="flex items-center justify-between border-b border-editorial-border pb-5">
@@ -165,8 +160,8 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Links List */}
-            <div className="flex flex-col space-y-4 my-auto py-6">
+            {/* 4 Staggered Links */}
+            <div className="flex flex-col space-y-6 my-auto py-8">
               {NAV_ITEMS.map((item, idx) => {
                 const isActive = activeSection === item.href.substring(1);
                 return (
@@ -174,12 +169,12 @@ export default function Navbar() {
                     key={item.label}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.04 * idx, duration: 0.35 }}
+                    transition={{ delay: 0.05 * idx, duration: 0.35 }}
                   >
                     <a
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item.href)}
-                      className={`font-serif-display text-2xl sm:text-3xl tracking-widest transition-colors duration-300 flex items-center justify-between ${
+                      className={`font-serif-display text-3xl sm:text-4xl tracking-widest transition-colors duration-300 flex items-center justify-between ${
                         isActive ? 'text-editorial-accent font-medium' : 'text-editorial-black hover:text-editorial-accent'
                       }`}
                     >

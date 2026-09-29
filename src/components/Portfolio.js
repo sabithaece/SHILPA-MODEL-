@@ -1,16 +1,16 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Eye, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Eye, ArrowUpRight } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
-import GalleryLightbox from './GalleryLightbox';
+import PortfolioLightbox from './PortfolioLightbox';
 
-export default function Gallery() {
+export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
   const filteredItems = useMemo(() => {
-    if (selectedCategory === "All") return portfolioData.galleryItems;
-    return portfolioData.galleryItems.filter((item) => item.category === selectedCategory);
+    if (selectedCategory === "All") return portfolioData.portfolioItems;
+    return portfolioData.portfolioItems.filter((item) => item.category === selectedCategory);
   }, [selectedCategory]);
 
   const activeLightboxItem = lightboxIndex !== null ? filteredItems[lightboxIndex] : null;
@@ -36,14 +36,14 @@ export default function Gallery() {
   };
 
   return (
-    <section id="gallery" className="relative py-24 md:py-32 px-6 md:px-12 lg:px-16 bg-editorial-bg border-t border-editorial-border">
+    <section id="portfolio" className="relative py-24 md:py-32 px-6 md:px-12 lg:px-16 bg-editorial-bg border-t border-editorial-border">
       <div className="max-w-7xl mx-auto">
         {/* Section Marker */}
         <div className="flex items-center space-x-3 mb-10">
-          <span className="text-editorial-accent font-sans text-xs tracking-widest uppercase font-semibold">05</span>
+          <span className="text-editorial-accent font-sans text-xs tracking-widest uppercase font-semibold">03</span>
           <span className="w-8 h-[1px] bg-editorial-accent/40" />
           <span className="text-editorial-gray font-sans text-xs tracking-editorial uppercase">
-            EDITORIAL ARCHIVE
+            PORTFOLIO ARCHIVE
           </span>
         </div>
 
@@ -64,7 +64,7 @@ export default function Gallery() {
 
         {/* Category Filter Pills */}
         <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-12 border-b border-editorial-border pb-6">
-          {portfolioData.galleryCategories.map((cat) => {
+          {portfolioData.portfolioCategories.map((cat) => {
             const isActive = selectedCategory === cat;
             return (
               <button
@@ -81,7 +81,7 @@ export default function Gallery() {
               >
                 {isActive && (
                   <motion.div
-                    layoutId="activeEditorialPill"
+                    layoutId="activeCleanPill"
                     className="absolute inset-0 bg-editorial-black shadow-sm"
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
@@ -156,7 +156,7 @@ export default function Gallery() {
       </div>
 
       {/* Fullscreen Lightbox Modal */}
-      <GalleryLightbox
+      <PortfolioLightbox
         isOpen={lightboxIndex !== null}
         activeItem={activeLightboxItem}
         onClose={handleCloseLightbox}

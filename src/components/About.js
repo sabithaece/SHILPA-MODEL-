@@ -5,8 +5,8 @@ import { portfolioData } from '../data/portfolioData';
 import { MODEL_IMAGE } from '../constants/assets';
 
 export default function About() {
-  const scrollToGallery = () => {
-    const el = document.getElementById('gallery');
+  const scrollToPortfolio = () => {
+    const el = document.getElementById('portfolio');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -14,17 +14,17 @@ export default function About() {
     <section id="about" className="relative py-24 md:py-32 px-6 md:px-12 lg:px-16 bg-white border-t border-editorial-border">
       <div className="max-w-7xl mx-auto">
         {/* Section Marker */}
-        <div className="flex items-center space-x-3 mb-12">
+        <div className="flex items-center space-x-3 mb-10">
           <span className="text-editorial-accent font-sans text-xs tracking-widest uppercase font-semibold">02</span>
           <span className="w-8 h-[1px] bg-editorial-accent/40" />
           <span className="text-editorial-gray font-sans text-xs tracking-editorial uppercase">
-            BIOGRAPHY
+            ABOUT ME
           </span>
         </div>
 
         {/* Side-by-Side Editorial Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Portrait Photograph */}
+          {/* Left Column: Portrait Photograph with Editorial Frame */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -46,13 +46,13 @@ export default function About() {
               </div>
 
               <div className="pt-3 px-1 flex justify-between items-center text-[10px] text-editorial-gray font-sans uppercase tracking-widest">
-                <span>PORTRAIT MONOGRAPH</span>
-                <span className="text-editorial-accent font-medium">© 2026</span>
+                <span>PORTRAIT STUDY</span>
+                <span className="text-editorial-accent font-medium">SABITHA © 2026</span>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Text Content & View My Work CTA */}
+          {/* Right Column: Biography Content, Specs & View Portfolio Button */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -80,13 +80,27 @@ export default function About() {
               {portfolioData.aboutMe.philosophy}
             </p>
 
-            {/* Minimal "VIEW MY WORK" Button */}
+            {/* Quick Specs Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 p-5 bg-editorial-bg border border-editorial-border mb-8">
+              {portfolioData.aboutMe.specs.map((item) => (
+                <div key={item.label} className="flex flex-col">
+                  <span className="text-[10px] uppercase tracking-wider text-editorial-gray font-sans">
+                    {item.label}
+                  </span>
+                  <span className="text-xs sm:text-sm font-serif-display text-editorial-black font-medium mt-0.5">
+                    {item.value}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Minimal "VIEW PORTFOLIO" Button */}
             <div>
               <button
-                onClick={scrollToGallery}
-                className="inline-flex items-center space-x-3 px-7 py-3.5 bg-editorial-black text-white hover:bg-editorial-accent transition-all duration-300 font-sans text-xs uppercase tracking-editorial font-medium shadow-sm group"
+                onClick={scrollToPortfolio}
+                className="inline-flex items-center space-x-3 px-8 py-4 bg-editorial-black text-white hover:bg-editorial-accent transition-all duration-300 font-sans text-xs uppercase tracking-editorial font-medium shadow-sm group"
               >
-                <span>VIEW MY WORK</span>
+                <span>VIEW PORTFOLIO</span>
                 <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </button>
             </div>

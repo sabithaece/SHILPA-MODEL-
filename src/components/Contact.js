@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Instagram, MessageCircle, Send, CheckCircle2, AlertCircle, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, MessageCircle, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 const PROJECT_TYPES = [
@@ -74,7 +74,7 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto">
         {/* Section Marker */}
         <div className="flex items-center space-x-3 mb-10">
-          <span className="text-editorial-accent font-sans text-xs tracking-widest uppercase font-semibold">09</span>
+          <span className="text-editorial-accent font-sans text-xs tracking-widest uppercase font-semibold">04</span>
           <span className="w-8 h-[1px] bg-editorial-accent/40" />
           <span className="text-editorial-gray font-sans text-xs tracking-editorial uppercase">
             BOOKING & INQUIRIES
@@ -240,7 +240,6 @@ export default function Contact() {
               </AnimatePresence>
 
               <form onSubmit={handleSubmit} noValidate className="space-y-6">
-                {/* Name */}
                 <div>
                   <label
                     htmlFor="name"
@@ -267,7 +266,6 @@ export default function Contact() {
                   )}
                 </div>
 
-                {/* Email */}
                 <div>
                   <label
                     htmlFor="email"
@@ -294,7 +292,6 @@ export default function Contact() {
                   )}
                 </div>
 
-                {/* Project Type */}
                 <div>
                   <label
                     htmlFor="projectType"
@@ -317,7 +314,6 @@ export default function Contact() {
                   </select>
                 </div>
 
-                {/* Message */}
                 <div>
                   <label
                     htmlFor="message"
@@ -344,7 +340,6 @@ export default function Contact() {
                   )}
                 </div>
 
-                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}

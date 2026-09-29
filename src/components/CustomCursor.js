@@ -3,11 +3,10 @@ import { motion } from 'framer-motion';
 
 export default function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
-  const [cursorType, setCursorType] = useState('default'); // 'default' | 'pointer' | 'view'
+  const [cursorType, setCursorType] = useState('default');
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Only enable on fine pointer (desktop / mouse) devices
     if (window.matchMedia('(pointer: coarse)').matches) {
       return;
     }

@@ -6,12 +6,7 @@ import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import ModelProfile from './components/ModelProfile';
-import Experience from './components/Experience';
-import Gallery from './components/Gallery';
-import Services from './components/Services';
-import VideoGallery from './components/VideoGallery';
-import Achievements from './components/Achievements';
+import Portfolio from './components/Portfolio';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -26,7 +21,7 @@ export default function App() {
     restDelta: 0.001
   });
 
-  // Handle URL path routing e.g. /about, /gallery to auto-scroll smoothly
+  // Handle URL path routing e.g. /about, /portfolio, /contact to auto-scroll smoothly
   useEffect(() => {
     const path = location.pathname.replace('/', '');
     if (path) {
@@ -53,16 +48,11 @@ export default function App() {
       {/* Sticky Navigation Bar */}
       <Navbar />
 
-      {/* Main Content Sections */}
+      {/* Main Content Sections: 4 Core Sections */}
       <main className="relative">
         <Hero />
         <About />
-        <ModelProfile />
-        <Experience />
-        <Gallery />
-        <Services />
-        <VideoGallery />
-        <Achievements />
+        <Portfolio />
         <Contact />
       </main>
 
