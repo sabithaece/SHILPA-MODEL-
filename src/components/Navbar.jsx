@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowUpRight, Instagram, Linkedin, Mail } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Instagram, Mail, Phone } from 'lucide-react';
+import { portfolioData } from '../data/portfolioData';
 
 const NAV_ITEMS = [
-  { label: 'HOME', href: '#home', number: '00' },
-  { label: 'ABOUT', href: '#about', number: '01' },
-  { label: 'EXPERIENCE', href: '#experience', number: '02' },
-  { label: 'GALLERY', href: '#gallery', number: '03' },
-  { label: 'ACHIEVEMENTS', href: '#achievements', number: '04' },
-  { label: 'CONTACT', href: '#contact', number: '05' },
+  { label: 'HOME', href: '#home' },
+  { label: 'ABOUT', href: '#about' },
+  { label: 'PROFILE', href: '#profile' },
+  { label: 'EXPERIENCE', href: '#experience' },
+  { label: 'GALLERY', href: '#gallery' },
+  { label: 'SERVICES', href: '#services' },
+  { label: 'BEHIND THE LENS', href: '#behind-the-lens' },
+  { label: 'ACHIEVEMENTS', href: '#achievements' },
+  { label: 'CONTACT', href: '#contact' },
 ];
 
 export default function Navbar() {
@@ -16,17 +20,16 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Monitor scroll for header background styling and active section detection
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
+      if (window.scrollY > 50) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
 
       const sections = NAV_ITEMS.map((item) => item.href.substring(1));
-      const scrollPosition = window.scrollY + 250;
+      const scrollPosition = window.scrollY + 280;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
@@ -41,7 +44,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent background scrolling when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -64,27 +66,27 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
           isScrolled
-            ? 'bg-luxury-black/85 backdrop-blur-md py-4 border-b border-luxury-border'
+            ? 'bg-[#F7F5F2]/95 backdrop-blur-md py-4 border-b border-editorial-border shadow-sm'
             : 'bg-transparent py-6 md:py-8'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          {/* Brand Logo */}
+          {/* Left Brand: SABITHA */}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, '#home')}
             className="group flex flex-col items-start focus:outline-none"
           >
-            <span className="font-serif-display text-2xl md:text-3xl tracking-[0.25em] font-medium text-luxury-cream group-hover:text-luxury-gold transition-colors duration-300">
-              SHILPA
+            <span className="font-serif-display text-2xl md:text-3xl tracking-[0.28em] font-medium text-editorial-black group-hover:text-editorial-accent transition-colors duration-300">
+              {portfolioData.modelInfo.name}
             </span>
-            <span className="text-[9px] uppercase tracking-[0.35em] text-luxury-muted font-sans -mt-1 group-hover:text-luxury-sand transition-colors duration-300">
-              Editorial Model
+            <span className="text-[9px] uppercase tracking-[0.3em] text-editorial-gray font-sans -mt-1 group-hover:text-editorial-black transition-colors duration-300">
+              Fashion Model
             </span>
           </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8 xl:space-x-10">
+          {/* Right Desktop Nav Menu */}
+          <nav className="hidden xl:flex items-center space-x-7">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.href.substring(1);
               return (
@@ -92,18 +94,17 @@ export default function Navbar() {
                   key={item.label}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className={`relative py-1 text-xs tracking-editorial uppercase transition-all duration-300 font-sans font-medium flex items-center space-x-1.5 ${
+                  className={`relative py-1 text-[11px] tracking-editorial uppercase transition-all duration-300 font-sans font-medium ${
                     isActive
-                      ? 'text-luxury-gold font-semibold'
-                      : 'text-luxury-cream/70 hover:text-luxury-cream'
+                      ? 'text-editorial-accent font-semibold'
+                      : 'text-editorial-black/75 hover:text-editorial-black'
                   }`}
                 >
-                  <span className="text-[9px] text-luxury-gold/60">{item.number}</span>
                   <span>{item.label}</span>
                   {isActive && (
                     <motion.span
-                      layoutId="activeNavIndicator"
-                      className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-luxury-gold"
+                      layoutId="activeEditorialNav"
+                      className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-editorial-accent"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -112,34 +113,30 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Direct CTA & Mobile Toggle */}
-          <div className="flex items-center space-x-4 md:space-x-6">
+          {/* Minimal "BOOK ME" Button & Hamburger */}
+          <div className="flex items-center space-x-4">
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="hidden sm:inline-flex items-center space-x-2 text-xs uppercase tracking-editorial px-5 py-2.5 border border-luxury-cream/20 hover:border-luxury-gold text-luxury-cream hover:text-luxury-gold transition-all duration-300 group font-sans"
+              className="inline-flex items-center space-x-2 text-xs uppercase tracking-editorial px-5 py-2.5 bg-editorial-black text-white hover:bg-editorial-accent transition-all duration-300 font-sans font-medium group shadow-sm"
             >
-              <span>BOOKING</span>
+              <span>BOOK ME</span>
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
 
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-luxury-cream hover:text-luxury-gold focus:outline-none transition-colors"
-              aria-label="Toggle Navigation Menu"
+              className="xl:hidden p-2 text-editorial-black hover:text-editorial-accent focus:outline-none transition-colors"
+              aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Fullscreen Luxury Mobile Menu */}
+      {/* Fullscreen Mobile Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -147,81 +144,84 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-50 bg-luxury-black/98 backdrop-blur-2xl flex flex-col justify-between px-8 py-10 lg:hidden overflow-y-auto"
+            className="fixed inset-0 z-50 bg-[#F7F5F2] flex flex-col justify-between px-8 py-8 xl:hidden overflow-y-auto"
           >
-            {/* Top Bar inside Drawer */}
-            <div className="flex items-center justify-between border-b border-luxury-border pb-6">
-              <span className="font-serif-display text-2xl tracking-[0.25em] text-luxury-cream">
-                SHILPA
-              </span>
+            {/* Drawer Header */}
+            <div className="flex items-center justify-between border-b border-editorial-border pb-5">
+              <div>
+                <span className="font-serif-display text-2xl tracking-[0.25em] text-editorial-black block">
+                  {portfolioData.modelInfo.name}
+                </span>
+                <span className="text-[9px] uppercase tracking-widest text-editorial-gray">
+                  Editorial Portfolio
+                </span>
+              </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2 text-luxury-cream hover:text-luxury-gold transition-colors focus:outline-none"
+                className="p-2 text-editorial-black hover:text-editorial-accent transition-colors focus:outline-none"
                 aria-label="Close menu"
               >
-                <X className="w-7 h-7" />
+                <X className="w-6 h-6" />
               </button>
             </div>
 
-            {/* Staggered Links */}
-            <div className="flex flex-col space-y-6 my-auto py-8">
+            {/* Links List */}
+            <div className="flex flex-col space-y-4 my-auto py-6">
               {NAV_ITEMS.map((item, idx) => {
                 const isActive = activeSection === item.href.substring(1);
                 return (
                   <motion.div
                     key={item.label}
-                    initial={{ opacity: 0, x: -25 }}
+                    initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 * idx, duration: 0.4 }}
+                    transition={{ delay: 0.04 * idx, duration: 0.35 }}
                   >
                     <a
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item.href)}
-                      className={`group flex items-baseline space-x-4 text-2xl sm:text-3xl font-serif-display tracking-widest transition-colors duration-300 ${
-                        isActive ? 'text-luxury-gold' : 'text-luxury-cream hover:text-luxury-gold'
+                      className={`font-serif-display text-2xl sm:text-3xl tracking-widest transition-colors duration-300 flex items-center justify-between ${
+                        isActive ? 'text-editorial-accent font-medium' : 'text-editorial-black hover:text-editorial-accent'
                       }`}
                     >
-                      <span className="text-xs font-sans text-luxury-gold/50 font-normal">
-                        {item.number}
-                      </span>
                       <span>{item.label}</span>
+                      <span className="text-xs font-sans text-editorial-gray/60 font-normal">
+                        0{idx + 1}
+                      </span>
                     </a>
                   </motion.div>
                 );
               })}
             </div>
 
-            {/* Bottom Details */}
-            <div className="border-t border-luxury-border pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-luxury-muted font-sans">
+            {/* Drawer Bottom Info */}
+            <div className="border-t border-editorial-border pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-editorial-gray font-sans">
               <div>
-                <p className="text-luxury-cream/80">REPRESENTED IN ASIA & EUROPE</p>
-                <p className="text-[11px] tracking-wider mt-0.5">bookings@shilpamodel.com</p>
+                <p className="text-editorial-black font-medium">{portfolioData.modelInfo.location}</p>
+                <p className="text-[11px] mt-0.5">{portfolioData.modelInfo.email}</p>
               </div>
-              <div className="flex items-center space-x-5">
+              <div className="flex items-center space-x-4">
                 <a
-                  href="https://instagram.com"
+                  href={portfolioData.modelInfo.instagram}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-luxury-gold transition-colors p-1"
+                  className="hover:text-editorial-accent transition-colors p-1"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-luxury-gold transition-colors p-1"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="w-4 h-4" />
-                </a>
-                <a
-                  href="mailto:bookings@shilpamodel.com"
-                  className="hover:text-luxury-gold transition-colors p-1"
+                  href={`mailto:${portfolioData.modelInfo.email}`}
+                  className="hover:text-editorial-accent transition-colors p-1"
                   aria-label="Email"
                 >
                   <Mail className="w-4 h-4" />
+                </a>
+                <a
+                  href={`tel:${portfolioData.modelInfo.phone}`}
+                  className="hover:text-editorial-accent transition-colors p-1"
+                  aria-label="Phone"
+                >
+                  <Phone className="w-4 h-4" />
                 </a>
               </div>
             </div>

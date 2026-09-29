@@ -16,7 +16,6 @@ export default function CustomCursor() {
       setMousePosition({ x: e.clientX, y: e.clientY });
       if (!isVisible) setIsVisible(true);
 
-      // Detect hover target
       const target = e.target;
       if (target.closest('[data-cursor="view"]')) {
         setCursorType('view');
@@ -52,37 +51,37 @@ export default function CustomCursor() {
 
   return (
     <div className="hidden lg:block pointer-events-none fixed inset-0 z-50 overflow-hidden">
-      {/* Small Precision Dot */}
+      {/* Precision Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-luxury-cream mix-blend-difference"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-editorial-black"
         animate={{
           x: mousePosition.x - 4,
           y: mousePosition.y - 4,
-          scale: cursorType === 'view' ? 0 : cursorType === 'pointer' ? 0.5 : 1,
+          scale: cursorType === 'view' ? 0 : cursorType === 'pointer' ? 0.6 : 1,
         }}
         transition={{ type: 'spring', damping: 30, stiffness: 350, mass: 0.1 }}
       />
 
-      {/* Trailing Outer Ring / VIEW indicator */}
+      {/* Trailing Outer Ring / VIEW badge */}
       <motion.div
-        className={`fixed top-0 left-0 rounded-full flex items-center justify-center text-luxury-black font-semibold text-[10px] tracking-widest ${
+        className={`fixed top-0 left-0 rounded-full flex items-center justify-center text-editorial-black font-semibold text-[10px] tracking-widest ${
           cursorType === 'view'
-            ? 'bg-luxury-cream text-luxury-black border border-luxury-cream shadow-2xl'
+            ? 'bg-editorial-black text-white border border-editorial-black shadow-2xl'
             : cursorType === 'pointer'
-            ? 'border border-luxury-gold/70 bg-luxury-gold/10'
-            : 'border border-luxury-cream/30'
+            ? 'border border-editorial-accent bg-editorial-accent-subtle'
+            : 'border border-editorial-black/25'
         }`}
         animate={{
-          x: cursorType === 'view' ? mousePosition.x - 40 : mousePosition.y ? mousePosition.x - 20 : 0,
-          y: cursorType === 'view' ? mousePosition.y - 40 : mousePosition.y - 20,
-          width: cursorType === 'view' ? 80 : cursorType === 'pointer' ? 40 : 40,
-          height: cursorType === 'view' ? 80 : cursorType === 'pointer' ? 40 : 40,
+          x: cursorType === 'view' ? mousePosition.x - 36 : mousePosition.x - 18,
+          y: cursorType === 'view' ? mousePosition.y - 36 : mousePosition.y - 18,
+          width: cursorType === 'view' ? 72 : 36,
+          height: cursorType === 'view' ? 72 : 36,
           opacity: isVisible ? 1 : 0,
         }}
-        transition={{ type: 'spring', damping: 25, stiffness: 220, mass: 0.2 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 240, mass: 0.2 }}
       >
         {cursorType === 'view' && (
-          <span className="font-editorial-sans font-bold tracking-widest text-xs uppercase">
+          <span className="font-editorial-sans font-medium tracking-widest text-[11px] uppercase">
             VIEW
           </span>
         )}

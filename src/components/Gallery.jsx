@@ -1,17 +1,16 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Eye, ArrowUpRight, Sparkles } from 'lucide-react';
-import { galleryCategories, galleryItems } from '../data/gallery';
+import { portfolioData } from '../data/portfolioData';
 import GalleryLightbox from './GalleryLightbox';
 
 export default function Gallery() {
-  const [selectedCategory, setSelectedCategory] = useState("ALL");
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [lightboxIndex, setLightboxIndex] = useState(null);
 
-  // Filter items based on active category
   const filteredItems = useMemo(() => {
-    if (selectedCategory === "ALL") return galleryItems;
-    return galleryItems.filter((item) => item.category === selectedCategory);
+    if (selectedCategory === "All") return portfolioData.galleryItems;
+    return portfolioData.galleryItems.filter((item) => item.category === selectedCategory);
   }, [selectedCategory]);
 
   const activeLightboxItem = lightboxIndex !== null ? filteredItems[lightboxIndex] : null;
@@ -37,13 +36,13 @@ export default function Gallery() {
   };
 
   return (
-    <section id="gallery" className="relative py-24 md:py-32 px-6 md:px-12 lg:px-16 bg-luxury-dark border-t border-luxury-border">
+    <section id="gallery" className="relative py-24 md:py-32 px-6 md:px-12 lg:px-16 bg-editorial-bg border-t border-editorial-border">
       <div className="max-w-7xl mx-auto">
         {/* Section Marker */}
-        <div className="flex items-center space-x-3 mb-12">
-          <span className="text-luxury-gold font-sans text-xs tracking-widest uppercase">03</span>
-          <span className="w-8 h-[1px] bg-luxury-gold/50" />
-          <span className="text-luxury-muted font-sans text-xs tracking-editorial uppercase">
+        <div className="flex items-center space-x-3 mb-10">
+          <span className="text-editorial-accent font-sans text-xs tracking-widest uppercase font-semibold">05</span>
+          <span className="w-8 h-[1px] bg-editorial-accent/40" />
+          <span className="text-editorial-gray font-sans text-xs tracking-editorial uppercase">
             EDITORIAL ARCHIVE
           </span>
         </div>
@@ -51,18 +50,21 @@ export default function Gallery() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <h2 className="font-serif-display text-4xl sm:text-5xl lg:text-6xl font-normal text-luxury-cream tracking-tight">
-              CURATED <span className="italic font-light text-luxury-sand">GALLERY</span>.
+            <h2 className="font-serif-display text-4xl sm:text-5xl lg:text-6xl font-normal text-editorial-black tracking-tight">
+              THE <span className="italic font-light text-editorial-accent">PORTFOLIO</span>.
             </h2>
+            <p className="font-serif-display text-xl sm:text-2xl text-editorial-gray italic font-light mt-2">
+              "A collection of moments, styles, and expressions."
+            </p>
           </div>
-          <p className="font-sans text-xs sm:text-sm text-luxury-muted max-w-md uppercase tracking-wider">
-            Explore diverse compositions, lighting studies, and high-fashion aesthetics showcasing versatility across print, runway, and digital media.
+          <p className="font-sans text-xs sm:text-sm text-editorial-gray max-w-md uppercase tracking-wider font-light">
+            Curated high-fashion lookbook showcasing versatility across couture, commercial campaigns, traditional silhouettes, and fine jewelry.
           </p>
         </div>
 
         {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-12 border-b border-luxury-border pb-6">
-          {galleryCategories.map((cat) => {
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-12 border-b border-editorial-border pb-6">
+          {portfolioData.galleryCategories.map((cat) => {
             const isActive = selectedCategory === cat;
             return (
               <button
@@ -71,16 +73,16 @@ export default function Gallery() {
                   setSelectedCategory(cat);
                   setLightboxIndex(null);
                 }}
-                className={`relative px-4 py-2 text-xs uppercase tracking-editorial font-sans transition-all duration-300 ${
+                className={`relative px-5 py-2.5 text-xs uppercase tracking-editorial font-sans transition-all duration-300 font-medium ${
                   isActive
-                    ? 'text-luxury-black font-semibold'
-                    : 'text-luxury-cream/70 hover:text-luxury-cream hover:bg-luxury-surface/50'
+                    ? 'text-white'
+                    : 'text-editorial-black/70 hover:text-editorial-black hover:bg-white/80'
                 }`}
               >
                 {isActive && (
                   <motion.div
-                    layoutId="activeCategoryPill"
-                    className="absolute inset-0 bg-luxury-gold"
+                    layoutId="activeEditorialPill"
+                    className="absolute inset-0 bg-editorial-black shadow-sm"
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -90,7 +92,7 @@ export default function Gallery() {
           })}
         </div>
 
-        {/* Editorial Masonry Grid */}
+        {/* Masonry / Grid Gallery */}
         <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           <AnimatePresence>
             {filteredItems.map((item, index) => (
@@ -100,53 +102,51 @@ export default function Gallery() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                className={`group relative overflow-hidden bg-luxury-black border border-luxury-border hover:border-luxury-gold/60 transition-all duration-500 shadow-xl cursor-pointer ${
+                transition={{ duration: 0.45, delay: index * 0.04 }}
+                className={`group relative overflow-hidden bg-white border border-editorial-border hover:border-editorial-accent transition-all duration-500 shadow-sm hover:shadow-lg cursor-pointer ${
                   item.aspectRatio || 'aspect-[3/4]'
                 }`}
                 onClick={() => handleOpenLightbox(index)}
                 data-cursor="view"
               >
-                {/* Model Image with specific crop & editorial filter */}
+                {/* Model Image with specific crop position */}
                 <img
                   src={item.image}
                   alt={item.title}
                   style={{ objectPosition: item.cropPosition || 'center' }}
-                  className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${
-                    item.filterClass || ''
-                  }`}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
-                {/* Dark Vignette Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-luxury-black/90 via-luxury-black/20 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
+                {/* Dark Vignette Overlay on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-400" />
 
-                {/* Top Corner Badge: Number & Category */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-luxury-cream text-[11px] font-sans tracking-widest uppercase z-10">
-                  <span className="bg-luxury-black/70 backdrop-blur-md px-2.5 py-1 border border-luxury-border text-luxury-gold">
-                    {item.number}
-                  </span>
-                  <span className="text-luxury-muted text-[10px] tracking-editorial">
+                {/* Top Corner Badge: Category on Hover */}
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-white text-[10px] font-sans tracking-widest uppercase z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 border border-white/20 text-[#D8C7B0]">
                     {item.category}
+                  </span>
+                  <span className="bg-black/60 backdrop-blur-md px-2 py-1 text-white/80">
+                    0{item.id}
                   </span>
                 </div>
 
-                {/* Center Hover Trigger Indicator */}
+                {/* Center Hover View Icon */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                  <div className="w-12 h-12 rounded-full bg-luxury-cream/10 backdrop-blur-md border border-luxury-cream/40 flex items-center justify-center text-luxury-cream shadow-xl">
-                    <Eye className="w-5 h-5 text-luxury-gold" />
+                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white shadow-xl">
+                    <Eye className="w-5 h-5 text-white" />
                   </div>
                 </div>
 
-                {/* Bottom Title and Editorial Details */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 z-10 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <span className="text-[10px] tracking-editorial uppercase text-luxury-gold font-sans block mb-1">
+                {/* Bottom Title and Tagline on Hover */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10 transform translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 text-white">
+                  <span className="text-[10px] tracking-editorial uppercase text-[#D8C7B0] font-sans block mb-1">
                     {item.tagline}
                   </span>
                   <div className="flex items-center justify-between">
-                    <h3 className="font-serif-display text-xl sm:text-2xl text-luxury-cream font-medium">
+                    <h3 className="font-serif-display text-2xl text-white font-medium">
                       {item.title}
                     </h3>
-                    <ArrowUpRight className="w-4 h-4 text-luxury-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <ArrowUpRight className="w-4 h-4 text-[#D8C7B0]" />
                   </div>
                 </div>
               </motion.div>

@@ -4,85 +4,81 @@
 
 @layer base {
   :root {
-    --color-gold: #c5a880;
-    --color-cream: #f6f4ee;
-    --color-black: #080808;
-    --color-surface: #141414;
+    --color-bg: #F7F5F2;
+    --color-white: #FFFFFF;
+    --color-black: #111111;
+    --color-gray: #777777;
+    --color-accent: #8B7355;
   }
 
   html {
     scroll-behavior: smooth;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #080808;
-    color: #f6f4ee;
+    font-family: 'Inter', sans-serif;
+    background-color: #F7F5F2;
+    color: #111111;
   }
 
   body {
     overflow-x: hidden;
-    background-color: #080808;
-    color: #f6f4ee;
+    background-color: #F7F5F2;
+    color: #111111;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Custom Luxury Scrollbar */
+  /* Editorial Minimal Scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #0d0d0d;
+    background: #F7F5F2;
   }
   ::-webkit-scrollbar-thumb {
-    background: #2a2a2a;
+    background: #D8D2C8;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #c5a880;
+    background: #8B7355;
   }
 }
 
-/* Editorial Typography Helpers */
+/* Editorial Typography */
 .font-serif-display {
   font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
 }
 
+.font-editorial-heading {
+  font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+}
+
 .font-editorial-sans {
-  font-family: 'Plus Jakarta Sans', Inter, sans-serif;
+  font-family: 'Inter', 'Montserrat', sans-serif;
 }
 
-/* Subtle Film Grain Overlay */
-.editorial-grain {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
-  background-size: 24px 24px;
-}
-
-/* Outlined Big Text */
-.text-outline {
-  -webkit-text-stroke: 1px rgba(246, 244, 238, 0.25);
+/* Editorial Outlined Text Effect */
+.text-outline-editorial {
+  -webkit-text-stroke: 1px rgba(17, 17, 17, 0.15);
   color: transparent;
   transition: all 0.5s ease;
 }
 
-.text-outline:hover {
-  -webkit-text-stroke: 1px #c5a880;
-  color: rgba(197, 168, 128, 0.1);
+.text-outline-editorial:hover {
+  -webkit-text-stroke: 1px #8B7355;
+  color: rgba(139, 115, 85, 0.05);
 }
 
-/* Line clamps & luxury borders */
-.border-subtle {
-  border-color: rgba(246, 244, 238, 0.08);
+/* Subtle Film Texture */
+.editorial-texture {
+  background-image: radial-gradient(rgba(17, 17, 17, 0.02) 1px, transparent 0);
+  background-size: 20px 20px;
 }
 
-.border-subtle-hover:hover {
-  border-color: rgba(197, 168, 128, 0.35);
+/* Smooth Image Scale */
+.editorial-image-hover {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Smooth Image Transitions */
-.luxury-image-hover {
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.luxury-image-hover:hover {
-  transform: scale(1.035);
+.editorial-image-hover:hover {
+  transform: scale(1.03);
 }
