@@ -4,7 +4,7 @@ import { Sparkles } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export default function Achievements() {
-  const { achievements } = portfolioData;
+  const { achievements, leadershipSpotlights } = portfolioData;
 
   return (
     <section id="achievements" className="relative py-24 sm:py-32 px-5 sm:px-8 md:px-12 lg:px-16 bg-[#F7F4EF] text-[#111111] border-t border-[#111111]/10">
@@ -35,6 +35,52 @@ export default function Achievements() {
             From runway runways to pioneering talent incubation through Vogue Modeling Company and Rise Academy.
           </p>
         </div>
+
+        {/* Leadership & Stage Visual Spotlights */}
+        {leadershipSpotlights && leadershipSpotlights.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 sm:mb-20">
+            {leadershipSpotlights.map((spotlight, idx) => (
+              <motion.div
+                key={spotlight.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.7, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="bg-white border border-[#111111]/10 overflow-hidden shadow-sm hover:shadow-xl hover:border-[#111111] transition-all duration-300 group flex flex-col justify-between"
+              >
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-[#111111]">
+                  <img
+                    src={spotlight.image}
+                    alt={spotlight.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-black/75 backdrop-blur-md px-3 py-1 text-[10px] tracking-[0.2em] uppercase font-name-sans font-semibold text-[#FFAD5A] border border-white/20">
+                      STAGE &amp; LEADERSHIP // 0{idx + 1}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-8 sm:p-10 flex flex-col justify-between flex-grow text-left">
+                  <div>
+                    <span className="text-[10px] font-bold tracking-[0.2em] uppercase font-name-sans text-[#777777] block mb-2">
+                      {spotlight.subtitle}
+                    </span>
+                    <h3 className="font-serif-quote italic text-2xl sm:text-3xl text-[#111111] font-normal leading-snug mb-3">
+                      {spotlight.title}
+                    </h3>
+                    <div className="w-10 h-[2px] bg-[#FFAD5A] mb-4 group-hover:w-16 transition-all duration-300" />
+                    <p className="font-name-sans text-xs sm:text-sm text-[#777777] leading-relaxed">
+                      {spotlight.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* Editorial Timeline & Card Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">

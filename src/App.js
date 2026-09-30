@@ -9,9 +9,9 @@ import Footer from './components/Footer';
 
 export default function App() {
   return (
-    <div className="w-full min-h-screen bg-[#F7F4EF] text-[#111111] antialiased selection:bg-[#111111] selection:text-[#FFAD5A]">
+    <div className="w-full max-w-full min-h-screen bg-[#F7F4EF] text-[#111111] antialiased selection:bg-[#111111] selection:text-[#FFAD5A] overflow-x-hidden">
       <Navbar />
-      <main>
+      <main className="w-full max-w-full overflow-x-hidden">
         <EditorialHome />
         <About />
         <Portfolio />

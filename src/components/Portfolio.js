@@ -95,66 +95,68 @@ export default function Portfolio() {
           })}
         </div>
 
-        {/* Masonry / Grid Gallery */}
-        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          <AnimatePresence>
-            {filteredItems.map((item, index) => (
-              <motion.div
-                key={item.id}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.45, delay: index * 0.05 }}
-                className={`group relative overflow-hidden bg-[#F7F4EF] border border-[#111111]/10 hover:border-[#111111] transition-all duration-500 shadow-sm hover:shadow-xl cursor-pointer ${
-                  item.aspect || 'aspect-[3/4]'
-                }`}
-                onClick={() => handleOpenLightbox(index)}
-              >
-                {/* Model Photograph */}
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
+        {/* Curated Grid Gallery - Clean CSS Grid with smooth AnimatePresence transition */}
+        <div className="w-full">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={selectedCategory}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full"
+            >
+              {filteredItems.map((item, index) => (
+                <div
+                  key={item.id}
+                  className="group relative w-full aspect-[3/4] overflow-hidden bg-[#F7F4EF] border border-[#111111]/10 hover:border-[#111111] transition-all duration-300 shadow-sm hover:shadow-xl cursor-pointer"
+                  onClick={() => handleOpenLightbox(index)}
+                >
+                  {/* Model Photograph */}
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform"
+                    loading="lazy"
+                  />
 
-                {/* Dark Vignette Overlay on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  {/* Dark Vignette Overlay on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-                {/* Top Corner Badge: Category on Hover */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-white text-[10px] font-name-sans tracking-[0.2em] uppercase z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="bg-black/70 backdrop-blur-md px-3 py-1 border border-white/20 text-[#FFAD5A] font-semibold">
-                    {item.category}
-                  </span>
-                  <span className="bg-black/70 backdrop-blur-md px-2.5 py-1 text-white/80 font-medium">
-                    0{item.id}
-                  </span>
-                </div>
+                  {/* Top Corner Badge: Category on Hover */}
+                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-white text-[10px] font-name-sans tracking-[0.2em] uppercase z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                    <span className="bg-black/75 backdrop-blur-md px-3 py-1 border border-white/20 text-[#FFAD5A] font-semibold">
+                      {item.category}
+                    </span>
+                    <span className="bg-black/75 backdrop-blur-md px-2.5 py-1 text-white/80 font-medium">
+                      0{item.id}
+                    </span>
+                  </div>
 
-                {/* Center Hover View Icon */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white shadow-xl">
-                    <Eye className="w-5 h-5 text-white" />
+                  {/* Center Hover View Icon */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                    <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white shadow-xl">
+                      <Eye className="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+
+                  {/* Bottom Title and Subtitle on Hover */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 z-10 transform translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 text-white text-left pointer-events-none">
+                    <span className="text-[10px] tracking-[0.2em] uppercase text-[#FFAD5A] font-name-sans block mb-1 font-semibold">
+                      {item.subtitle}
+                    </span>
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-serif-quote italic text-2xl text-white font-normal">
+                        {item.title}
+                      </h3>
+                      <ArrowUpRight className="w-4 h-4 text-[#FFAD5A]" />
+                    </div>
                   </div>
                 </div>
-
-                {/* Bottom Title and Subtitle on Hover */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 z-10 transform translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 text-white text-left">
-                  <span className="text-[10px] tracking-[0.2em] uppercase text-[#FFAD5A] font-name-sans block mb-1 font-semibold">
-                    {item.subtitle}
-                  </span>
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-serif-quote italic text-2xl text-white font-normal">
-                      {item.title}
-                    </h3>
-                    <ArrowUpRight className="w-4 h-4 text-[#FFAD5A]" />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+              ))}
+            </motion.div>
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
 
       {/* Fullscreen Lightbox Modal */}

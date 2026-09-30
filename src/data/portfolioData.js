@@ -2,7 +2,12 @@ import {
   MODEL_IMAGE,
   MODEL_TRANSPARENT_IMAGE,
   MODEL_STANDING_RAW,
-  MODEL_FRONT_RAW
+  MODEL_FRONT_RAW,
+  FOUNDER_WHITE_BLAZER,
+  EDITORIAL_BW_FLOWERS,
+  EDITORIAL_BRONZE_STOOL,
+  MILESTONE_VOGUE_STAGE,
+  MILESTONE_RISE_PRESENTATION
 } from '../constants/assets';
 
 export const portfolioData = {
@@ -50,11 +55,11 @@ export const portfolioData = {
       "Recognizing the need for structured talent empowerment, she evolved from modeling into founding Vogue Modeling Company and Rise Academy. Over the past 5+ years, her organizations have become premier platforms dedicated to discovering, training, and launching aspiring talent.",
       "Having mentored more than 500 aspiring models, Shilpa’s mission remains rooted in nurturing unshakeable confidence, editorial versatility, and creating real, transformative opportunities for emerging faces across the fashion world."
     ],
-    image: MODEL_STANDING_RAW,
-    secondaryImage: MODEL_FRONT_RAW,
+    image: FOUNDER_WHITE_BLAZER,
+    secondaryImage: EDITORIAL_BW_FLOWERS,
   },
 
-  // Portfolio Gallery Data (Easily expandable with user's future uploads)
+  // Portfolio Gallery Data (Curated high-fashion lookbook)
   portfolioCategories: [
     "All",
     "Editorial",
@@ -67,63 +72,63 @@ export const portfolioData = {
   portfolioItems: [
     {
       id: 1,
-      title: "Executive Editorial",
+      title: "Sculptural Silhouette",
       category: "Editorial",
-      subtitle: "Haute Couture & Tailored Poise",
-      image: MODEL_STANDING_RAW,
+      subtitle: "B&W Avant-Garde Expression",
+      image: EDITORIAL_BW_FLOWERS,
       aspect: "aspect-[3/4]",
       featured: true,
-      description: "Structured houndstooth tailoring meets modern editorial posture."
+      description: "Monochrome fine-art couture editorial accentuating sculpted floral millinery, composure, and haute couture lighting."
     },
     {
       id: 2,
-      title: "Glittering Silhouette",
+      title: "Bronze Tailored Poise",
       category: "Fashion",
-      subtitle: "Evening Luxe Edition",
-      image: MODEL_FRONT_RAW,
-      aspect: "aspect-[4/5]",
-      featured: false,
-      description: "Bronze metallic texture and confident forward-leaning editorial chemistry."
+      subtitle: "Studio Metallic Series",
+      image: EDITORIAL_BRONZE_STOOL,
+      aspect: "aspect-[3/4]",
+      featured: true,
+      description: "Seated editorial composition showcasing commanding posture, bronze suiting, and refined high-fashion poise."
     },
     {
       id: 3,
+      title: "The Executive Presence",
+      category: "Commercial",
+      subtitle: "CEO & Founder Portfolio",
+      image: FOUNDER_WHITE_BLAZER,
+      aspect: "aspect-[3/4]",
+      featured: true,
+      description: "Crisp white tailored blazer and authoritative poise reflecting leadership across Vogue Modeling Company and Rise Academy."
+    },
+    {
+      id: 4,
+      title: "Vogue Runway Authority",
+      category: "Runway",
+      subtitle: "Showcase & Model Management",
+      image: MILESTONE_VOGUE_STAGE,
+      aspect: "aspect-[3/4]",
+      featured: true,
+      description: "Leading center stage at major fashion productions and Vogue Modeling Company showcase events."
+    },
+    {
+      id: 5,
+      title: "Rise Academy Masterclass",
+      category: "Lifestyle",
+      subtitle: "Soft Skills & Model Education",
+      image: MILESTONE_RISE_PRESENTATION,
+      aspect: "aspect-[3/4]",
+      featured: false,
+      description: "Keynote presentation and mentorship seminar training the next generation of models in professional runway etiquette."
+    },
+    {
+      id: 6,
       title: "Signature Monograph",
       category: "Editorial",
       subtitle: "Natural Glow & Expression",
       image: MODEL_IMAGE,
       aspect: "aspect-[3/4]",
-      featured: true,
-      description: "High-fashion portrait capturing depth, composure, and timeless character."
-    },
-    {
-      id: 4,
-      title: "Runway Authority",
-      category: "Runway",
-      subtitle: "Vogue Showcase Presentation",
-      image: MODEL_STANDING_RAW,
-      aspect: "aspect-[4/5]",
       featured: false,
-      description: "Commanding runway posture and contemporary stage presence."
-    },
-    {
-      id: 5,
-      title: "Studio Elegance",
-      category: "Commercial",
-      subtitle: "Brand Leadership Series",
-      image: MODEL_FRONT_RAW,
-      aspect: "aspect-[3/4]",
-      featured: false,
-      description: "Expressive commercial portrait reflecting CEO confidence."
-    },
-    {
-      id: 6,
-      title: "Timeless Expression",
-      category: "Lifestyle",
-      subtitle: "Warm Minimalist Mood",
-      image: MODEL_IMAGE,
-      aspect: "aspect-[4/5]",
-      featured: false,
-      description: "Warm tonal styling celebrating authentic personal identity."
+      description: "High-fashion portrait capturing depth, composure, and timeless character in soft warm light."
     }
   ],
 
@@ -133,18 +138,21 @@ export const portfolioData = {
       year: "2024",
       title: "500+ Model Mentorship Milestone",
       category: "Mentorship & Education",
+      image: MILESTONE_VOGUE_STAGE,
       description: "Celebrated developing and mentoring over 500 aspiring models through Vogue Modeling Company and Rise Academy programs."
     },
     {
       year: "2022",
       title: "Rise Academy Launch",
       category: "Major Milestones",
+      image: MILESTONE_RISE_PRESENTATION,
       description: "Established Rise Academy to provide specialized runway walking, poise, self-branding, and editorial portfolio training."
     },
     {
       year: "2019",
       title: "Vogue Modeling Company Founded",
       category: "Entrepreneurship",
+      image: MILESTONE_VOGUE_STAGE,
       description: "Launched Vogue Modeling Company to bridge the gap between fresh, diverse fashion talent and luxury agency campaigns."
     },
     {
@@ -164,6 +172,24 @@ export const portfolioData = {
       title: "10+ Years Modeling Legacy Inception",
       category: "Modeling Titles",
       description: "Commenced professional fashion modeling career, setting the standard for disciplined runway technique and camera presence."
+    }
+  ],
+
+  // Leadership & Stage Visual Spotlights
+  leadershipSpotlights: [
+    {
+      id: 1,
+      title: "Vogue Modeling Company Showcase",
+      subtitle: "Runway Production & Model Management",
+      image: MILESTONE_VOGUE_STAGE,
+      description: "Commanding center stage at Vogue Modeling Company productions, leading high-energy fashion showcases and industry talent presentations."
+    },
+    {
+      id: 2,
+      title: "Rise Academy Keynote & Mentorship",
+      subtitle: "Soft Skills, Poise & Runway Education",
+      image: MILESTONE_RISE_PRESENTATION,
+      description: "Delivering foundational masterclasses on professional modeling ethics, self-presentation, and poise for 500+ mentored students."
     }
   ],
 

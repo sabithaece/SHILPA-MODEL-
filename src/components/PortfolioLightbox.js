@@ -100,11 +100,11 @@ export default function PortfolioLightbox({
           className="relative max-w-4xl max-h-[85vh] w-full flex flex-col md:flex-row items-center bg-[#F7F4EF] border border-[#111111]/20 overflow-hidden shadow-2xl"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="w-full md:w-3/5 h-[48vh] md:h-[75vh] bg-black relative overflow-hidden flex items-center justify-center">
+          <div className="w-full md:w-3/5 h-[48vh] md:h-[75vh] bg-[#111111] relative overflow-hidden flex items-center justify-center">
             <img
               src={activeItem.image}
               alt={activeItem.title}
-              className="w-full h-full object-cover object-top"
+              className="max-w-full max-h-full object-contain object-center"
             />
           </div>
 
