@@ -36,34 +36,37 @@ export default function Portfolio() {
   };
 
   return (
-    <section id="portfolio" className="relative py-24 md:py-32 px-6 md:px-12 lg:px-16 bg-editorial-bg border-t border-editorial-border">
+    <section id="portfolio" className="relative py-24 sm:py-32 px-5 sm:px-8 md:px-12 lg:px-16 bg-white text-[#111111] border-t border-[#111111]/10">
       <div className="max-w-7xl mx-auto">
+        
         {/* Section Marker */}
         <div className="flex items-center space-x-3 mb-10">
-          <span className="text-editorial-accent font-sans text-xs tracking-widest uppercase font-semibold">03</span>
-          <span className="w-8 h-[1px] bg-editorial-accent/40" />
-          <span className="text-editorial-gray font-sans text-xs tracking-editorial uppercase">
-            PORTFOLIO ARCHIVE
+          <span className="text-[11px] font-bold tracking-[0.28em] text-[#111111]/60 uppercase font-name-sans">
+            02 / VISUAL GALLERY
+          </span>
+          <span className="w-12 h-[1px] bg-[#111111]/20" />
+          <span className="text-[11px] font-semibold tracking-[0.24em] text-[#111111]/90 uppercase font-name-sans">
+            CURATED ARCHIVE
           </span>
         </div>
 
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
           <div>
-            <h2 className="font-serif-display text-4xl sm:text-5xl lg:text-6xl font-normal text-editorial-black tracking-tight">
-              THE <span className="italic font-light text-editorial-accent">PORTFOLIO</span>.
+            <h2 className="font-serif-quote italic text-4xl sm:text-5xl lg:text-6xl font-normal text-[#111111] tracking-tight">
+              PORTFOLIO
             </h2>
-            <p className="font-serif-display text-xl sm:text-2xl text-editorial-gray italic font-light mt-2">
-              "A collection of moments, styles, and expressions."
+            <p className="font-serif-quote italic text-xl sm:text-2xl text-[#111111]/70 font-normal mt-2">
+              &ldquo;Moments. Expressions. Stories.&rdquo;
             </p>
           </div>
-          <p className="font-sans text-xs sm:text-sm text-editorial-gray max-w-md uppercase tracking-wider font-light">
-            Curated high-fashion lookbook showcasing versatility across couture, commercial campaigns, traditional silhouettes, and fine jewelry.
+          <p className="font-name-sans text-xs sm:text-sm text-[#777777] max-w-md uppercase tracking-[0.14em] font-medium leading-relaxed">
+            Curated high-fashion lookbook showcasing editorial presence, executive tailoring, and runway versatility.
           </p>
         </div>
 
         {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-12 border-b border-editorial-border pb-6">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-12 border-b border-[#111111]/10 pb-6">
           {portfolioData.portfolioCategories.map((cat) => {
             const isActive = selectedCategory === cat;
             return (
@@ -73,16 +76,16 @@ export default function Portfolio() {
                   setSelectedCategory(cat);
                   setLightboxIndex(null);
                 }}
-                className={`relative px-5 py-2.5 text-xs uppercase tracking-editorial font-sans transition-all duration-300 font-medium ${
+                className={`relative px-5 py-2.5 text-xs uppercase tracking-[0.18em] font-name-sans transition-all duration-300 font-semibold ${
                   isActive
                     ? 'text-white'
-                    : 'text-editorial-black/70 hover:text-editorial-black hover:bg-white/80'
+                    : 'text-[#111111]/70 hover:text-[#111111] hover:bg-[#F7F4EF]'
                 }`}
               >
                 {isActive && (
                   <motion.div
-                    layoutId="activeCleanPill"
-                    className="absolute inset-0 bg-editorial-black shadow-sm"
+                    layoutId="activePortfolioPill"
+                    className="absolute inset-0 bg-[#111111] shadow-sm"
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -102,30 +105,29 @@ export default function Portfolio() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.45, delay: index * 0.04 }}
-                className={`group relative overflow-hidden bg-white border border-editorial-border hover:border-editorial-accent transition-all duration-500 shadow-sm hover:shadow-lg cursor-pointer ${
-                  item.aspectRatio || 'aspect-[3/4]'
+                transition={{ duration: 0.45, delay: index * 0.05 }}
+                className={`group relative overflow-hidden bg-[#F7F4EF] border border-[#111111]/10 hover:border-[#111111] transition-all duration-500 shadow-sm hover:shadow-xl cursor-pointer ${
+                  item.aspect || 'aspect-[3/4]'
                 }`}
                 onClick={() => handleOpenLightbox(index)}
-                data-cursor="view"
               >
-                {/* Model Image with specific crop position */}
+                {/* Model Photograph */}
                 <img
                   src={item.image}
                   alt={item.title}
-                  style={{ objectPosition: item.cropPosition || 'center' }}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
                 />
 
                 {/* Dark Vignette Overlay on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-90 transition-opacity duration-400" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 {/* Top Corner Badge: Category on Hover */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-white text-[10px] font-sans tracking-widest uppercase z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 border border-white/20 text-[#D8C7B0]">
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-white text-[10px] font-name-sans tracking-[0.2em] uppercase z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="bg-black/70 backdrop-blur-md px-3 py-1 border border-white/20 text-[#FFAD5A] font-semibold">
                     {item.category}
                   </span>
-                  <span className="bg-black/60 backdrop-blur-md px-2 py-1 text-white/80">
+                  <span className="bg-black/70 backdrop-blur-md px-2.5 py-1 text-white/80 font-medium">
                     0{item.id}
                   </span>
                 </div>
@@ -137,16 +139,16 @@ export default function Portfolio() {
                   </div>
                 </div>
 
-                {/* Bottom Title and Tagline on Hover */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 z-10 transform translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 text-white">
-                  <span className="text-[10px] tracking-editorial uppercase text-[#D8C7B0] font-sans block mb-1">
-                    {item.tagline}
+                {/* Bottom Title and Subtitle on Hover */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10 transform translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300 text-white text-left">
+                  <span className="text-[10px] tracking-[0.2em] uppercase text-[#FFAD5A] font-name-sans block mb-1 font-semibold">
+                    {item.subtitle}
                   </span>
                   <div className="flex items-center justify-between">
-                    <h3 className="font-serif-display text-2xl text-white font-medium">
+                    <h3 className="font-serif-quote italic text-2xl text-white font-normal">
                       {item.title}
                     </h3>
-                    <ArrowUpRight className="w-4 h-4 text-[#D8C7B0]" />
+                    <ArrowUpRight className="w-4 h-4 text-[#FFAD5A]" />
                   </div>
                 </div>
               </motion.div>

@@ -1,24 +1,15 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Instagram, MessageCircle, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, MessageCircle, Send, CheckCircle2, ArrowUpRight } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
-const PROJECT_TYPES = [
-  "Fashion Campaign",
-  "Editorial Photoshoot",
-  "Runway & Fashion Show",
-  "Commercial Advertisement",
-  "E-commerce Modeling",
-  "Lifestyle Campaign",
-  "Beauty & Jewellery Campaign",
-  "Other Collaboration"
-];
-
 export default function Contact() {
+  const { contact } = portfolioData;
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    projectType: 'Fashion Campaign',
+    projectType: contact.projectTypes[0] || 'Editorial & Fashion Shoot',
     message: ''
   });
 
@@ -35,7 +26,7 @@ export default function Contact() {
       errs.email = 'Please enter a valid email address';
     }
     if (!formData.message.trim()) {
-      errs.message = 'Please provide brief details about your project';
+      errs.message = 'Please provide details about your enquiry';
     }
     return errs;
   };
@@ -63,300 +54,268 @@ export default function Contact() {
       setFormData({
         name: '',
         email: '',
-        projectType: 'Fashion Campaign',
+        projectType: contact.projectTypes[0] || 'Editorial & Fashion Shoot',
         message: ''
       });
-    }, 800);
+      setTimeout(() => setSubmitted(false), 6000);
+    }, 700);
   };
 
   return (
-    <section id="contact" className="relative py-24 md:py-32 px-6 md:px-12 lg:px-16 bg-editorial-bg border-t border-editorial-border">
+    <section id="contact" className="relative py-24 sm:py-32 px-5 sm:px-8 md:px-12 lg:px-16 bg-white text-[#111111] border-t border-[#111111]/10">
       <div className="max-w-7xl mx-auto">
+        
         {/* Section Marker */}
         <div className="flex items-center space-x-3 mb-10">
-          <span className="text-editorial-accent font-sans text-xs tracking-widest uppercase font-semibold">04</span>
-          <span className="w-8 h-[1px] bg-editorial-accent/40" />
-          <span className="text-editorial-gray font-sans text-xs tracking-editorial uppercase">
-            BOOKING & INQUIRIES
+          <span className="text-[11px] font-bold tracking-[0.28em] text-[#111111]/60 uppercase font-name-sans">
+            04 / CONNECT
+          </span>
+          <span className="w-12 h-[1px] bg-[#111111]/20" />
+          <span className="text-[11px] font-semibold tracking-[0.24em] text-[#111111]/90 uppercase font-name-sans">
+            BOOKINGS &amp; ENQUIRIES
           </span>
         </div>
 
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <h2 className="font-serif-display text-4xl sm:text-5xl lg:text-6xl font-normal text-editorial-black tracking-tight mb-3">
-            LET'S WORK <span className="italic font-light text-editorial-accent">TOGETHER</span>.
+        <div className="max-w-3xl mb-16 sm:mb-20 text-left">
+          <h2 className="font-serif-quote italic text-4xl sm:text-5xl lg:text-6xl font-normal text-[#111111] tracking-tight mb-4">
+            {contact.heading}
           </h2>
-          <p className="font-serif-display text-xl sm:text-2xl text-editorial-gray italic font-light">
-            "Have a project in mind? Let's create something beautiful together."
+          <p className="font-name-sans text-sm sm:text-base text-[#777777] leading-relaxed max-w-2xl font-normal">
+            &ldquo;{contact.subheading}&rdquo;
           </p>
         </div>
 
         {/* Contact Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Direct Info & Quick Action Buttons */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="p-8 bg-white border border-editorial-border shadow-sm">
-              <span className="text-xs uppercase tracking-editorial text-editorial-accent font-sans block mb-6 font-semibold">
-                DIRECT CONTACT & DETAILS
+          
+          {/* Left Column: Direct Info & Booking Actions */}
+          <div className="lg:col-span-5 space-y-8 text-left">
+            <div className="p-8 sm:p-10 bg-[#F7F4EF] border border-[#111111]/10 shadow-sm">
+              <span className="text-xs uppercase tracking-[0.22em] text-[#111111] font-name-sans block mb-8 font-bold">
+                DIRECT CHANNELS
               </span>
 
               <div className="space-y-6">
                 {/* Location */}
                 <div className="flex items-start space-x-4">
-                  <MapPin className="w-5 h-5 text-editorial-accent mt-0.5 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 text-[#FFAD5A] mt-0.5 flex-shrink-0" />
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-editorial-gray font-sans block">
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#777777] font-name-sans block font-semibold">
                       LOCATION
                     </span>
-                    <span className="text-sm font-sans text-editorial-black font-medium">
-                      {portfolioData.modelInfo.location}
+                    <span className="text-sm font-name-sans text-[#111111] font-medium">
+                      {contact.location}
                     </span>
                   </div>
                 </div>
 
                 {/* Email */}
                 <div className="flex items-start space-x-4">
-                  <Mail className="w-5 h-5 text-editorial-accent mt-0.5 flex-shrink-0" />
+                  <Mail className="w-5 h-5 text-[#FFAD5A] mt-0.5 flex-shrink-0" />
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-editorial-gray font-sans block">
-                      EMAIL
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#777777] font-name-sans block font-semibold">
+                      OFFICIAL EMAIL
                     </span>
                     <a
-                      href={`mailto:${portfolioData.modelInfo.email}`}
-                      className="text-sm font-sans text-editorial-black hover:text-editorial-accent transition-colors font-medium"
+                      href={`mailto:${contact.email}`}
+                      className="text-sm font-name-sans text-[#111111] hover:text-[#FFAD5A] transition-colors font-medium"
                     >
-                      {portfolioData.modelInfo.email}
+                      {contact.email}
                     </a>
                   </div>
                 </div>
 
                 {/* Phone */}
                 <div className="flex items-start space-x-4">
-                  <Phone className="w-5 h-5 text-editorial-accent mt-0.5 flex-shrink-0" />
+                  <Phone className="w-5 h-5 text-[#FFAD5A] mt-0.5 flex-shrink-0" />
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-editorial-gray font-sans block">
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#777777] font-name-sans block font-semibold">
                       PHONE NUMBER
                     </span>
                     <a
-                      href={`tel:${portfolioData.modelInfo.phone}`}
-                      className="text-sm font-sans text-editorial-black hover:text-editorial-accent transition-colors font-medium"
+                      href={`tel:${contact.phone}`}
+                      className="text-sm font-name-sans text-[#111111] hover:text-[#FFAD5A] transition-colors font-medium"
                     >
-                      {portfolioData.modelInfo.phone}
+                      {contact.phone}
                     </a>
                   </div>
                 </div>
 
-                {/* Instagram Profile */}
+                {/* WhatsApp */}
                 <div className="flex items-start space-x-4">
-                  <Instagram className="w-5 h-5 text-editorial-accent mt-0.5 flex-shrink-0" />
+                  <MessageCircle className="w-5 h-5 text-[#FFAD5A] mt-0.5 flex-shrink-0" />
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-editorial-gray font-sans block">
-                      INSTAGRAM PROFILE
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#777777] font-name-sans block font-semibold">
+                      WHATSAPP ENQUIRIES
                     </span>
                     <a
-                      href={portfolioData.modelInfo.instagram}
+                      href={contact.whatsapp}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-sm font-sans text-editorial-black hover:text-editorial-accent transition-colors font-medium"
+                      className="text-sm font-name-sans text-[#111111] hover:text-[#FFAD5A] transition-colors font-medium"
                     >
-                      {portfolioData.modelInfo.instagramHandle}
+                      {contact.whatsappNumber}
+                    </a>
+                  </div>
+                </div>
+
+                {/* Instagram */}
+                <div className="flex items-start space-x-4">
+                  <Instagram className="w-5 h-5 text-[#FFAD5A] mt-0.5 flex-shrink-0" />
+                  <div>
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#777777] font-name-sans block font-semibold">
+                      INSTAGRAM
+                    </span>
+                    <a
+                      href={contact.instagram}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-sm font-name-sans text-[#111111] hover:text-[#FFAD5A] transition-colors font-medium"
+                    >
+                      {contact.instagramHandle}
                     </a>
                   </div>
                 </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="mt-8 pt-6 border-t border-editorial-border flex flex-col sm:flex-row gap-3">
+              {/* Direct Booking Actions */}
+              <div className="mt-10 pt-6 border-t border-[#111111]/10 flex flex-col sm:flex-row gap-3">
                 <a
-                  href={`mailto:${portfolioData.modelInfo.email}?subject=Booking Inquiry - ${portfolioData.modelInfo.name}`}
-                  className="flex-1 py-3 px-4 bg-editorial-black text-white hover:bg-editorial-accent text-center text-xs uppercase tracking-editorial font-sans font-medium transition-colors shadow-sm"
+                  href={`mailto:${contact.email}?subject=Booking & Collaboration Inquiry - Shilpa Seetharaman`}
+                  className="flex-1 py-3 px-4 bg-[#111111] text-white hover:bg-[#FFAD5A] hover:text-[#111111] text-center text-xs uppercase tracking-[0.2em] font-name-sans font-bold transition-all shadow-sm"
                 >
-                  BOOK A SHOOT
+                  BOOK / COLLABORATE
                 </a>
 
                 <a
-                  href={`mailto:${portfolioData.modelInfo.email}`}
-                  className="flex-1 py-3 px-4 bg-editorial-bg border border-editorial-border hover:border-editorial-accent text-editorial-black hover:text-editorial-accent text-center text-xs uppercase tracking-editorial font-sans font-medium transition-colors"
-                >
-                  CONTACT ME
-                </a>
-
-                <a
-                  href={portfolioData.modelInfo.instagram}
+                  href={contact.whatsapp}
                   target="_blank"
                   rel="noreferrer"
-                  className="py-3 px-4 border border-editorial-border hover:border-editorial-accent text-editorial-black hover:text-editorial-accent flex items-center justify-center transition-colors"
-                  aria-label="Instagram"
+                  className="flex-1 py-3 px-4 bg-white border border-[#111111]/15 hover:border-[#111111] text-[#111111] text-center text-xs uppercase tracking-[0.2em] font-name-sans font-bold transition-all flex items-center justify-center gap-1.5"
                 >
-                  <Instagram className="w-4 h-4" />
+                  <span>CHAT ON WHATSAPP</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </div>
-
-              {/* WhatsApp Booking Button */}
-              {portfolioData.modelInfo.whatsapp && (
-                <div className="mt-4">
-                  <a
-                    href={`https://wa.me/${portfolioData.modelInfo.whatsapp.replace(/[^0-9]/g, '')}?text=Hello%20Sabitha,%20I%20would%20like%20to%20inquire%20about%20a%20modeling%20booking.`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="w-full py-3 px-4 bg-[#25D366] hover:bg-[#20ba5a] text-white flex items-center justify-center space-x-2 text-xs uppercase tracking-editorial font-sans font-semibold transition-all shadow-sm rounded-sm"
-                  >
-                    <MessageCircle className="w-4 h-4 fill-current" />
-                    <span>BOOK VIA WHATSAPP</span>
-                  </a>
-                </div>
-              )}
             </div>
           </div>
 
-          {/* Right Column: Contact Form */}
+          {/* Right Column: Contact Enquiry Form */}
           <div className="lg:col-span-7">
-            <div className="p-8 sm:p-10 bg-white border border-editorial-border shadow-sm relative">
-              <AnimatePresence>
-                {submitted && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="mb-8 p-6 bg-editorial-bg border border-editorial-accent text-editorial-black flex items-start space-x-4"
-                  >
-                    <CheckCircle2 className="w-6 h-6 text-editorial-accent flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h4 className="font-serif-display text-xl text-editorial-black font-medium mb-1">
-                        INQUIRY SUBMITTED
-                      </h4>
-                      <p className="text-xs text-editorial-gray font-sans font-light leading-relaxed">
-                        Thank you for reaching out. Your project details have been received and we will respond promptly within 24 hours.
-                      </p>
-                      <button
-                        onClick={() => setSubmitted(false)}
-                        className="mt-3 text-[10px] uppercase tracking-widest text-editorial-accent hover:underline font-sans font-semibold"
-                      >
-                        SEND ANOTHER INQUIRY
-                      </button>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+            <div className="p-8 sm:p-12 bg-[#F7F4EF] border border-[#111111]/10 shadow-sm text-left">
+              <h3 className="font-serif-quote italic text-2xl sm:text-3xl text-[#111111] font-normal mb-2">
+                Send an Enquiry
+              </h3>
+              <p className="font-name-sans text-xs text-[#777777] uppercase tracking-[0.16em] mb-8 font-semibold">
+                Direct management response within 24-48 hours
+              </p>
 
-              <form onSubmit={handleSubmit} noValidate className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Name */}
                 <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-xs uppercase tracking-editorial text-editorial-gray font-sans mb-2 font-medium"
-                  >
-                    NAME *
+                  <label className="block text-[11px] font-bold uppercase tracking-[0.2em] text-[#111111] font-name-sans mb-2">
+                    YOUR NAME *
                   </label>
                   <input
                     type="text"
-                    id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Your Name or Company"
-                    className={`w-full bg-editorial-bg border px-4 py-3.5 text-sm text-editorial-black font-sans placeholder-editorial-gray/40 focus:outline-none transition-colors ${
-                      errors.name ? 'border-red-400 focus:border-red-500' : 'border-editorial-border focus:border-editorial-accent'
-                    }`}
+                    placeholder="Enter your full name"
+                    className="w-full px-4 py-3.5 bg-white border border-[#111111]/15 text-[#111111] placeholder-[#777777]/50 text-sm font-name-sans focus:outline-none focus:border-[#111111] transition-colors"
                   />
-                  {errors.name && (
-                    <span className="text-[11px] text-red-500 mt-1 flex items-center space-x-1 font-sans">
-                      <AlertCircle className="w-3 h-3" />
-                      <span>{errors.name}</span>
-                    </span>
-                  )}
+                  {errors.name && <p className="text-red-500 text-xs mt-1.5 font-name-sans">{errors.name}</p>}
                 </div>
 
+                {/* Email */}
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-xs uppercase tracking-editorial text-editorial-gray font-sans mb-2 font-medium"
-                  >
-                    EMAIL *
+                  <label className="block text-[11px] font-bold uppercase tracking-[0.2em] text-[#111111] font-name-sans mb-2">
+                    EMAIL ADDRESS *
                   </label>
                   <input
                     type="email"
-                    id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="name@example.com"
-                    className={`w-full bg-editorial-bg border px-4 py-3.5 text-sm text-editorial-black font-sans placeholder-editorial-gray/40 focus:outline-none transition-colors ${
-                      errors.email ? 'border-red-400 focus:border-red-500' : 'border-editorial-border focus:border-editorial-accent'
-                    }`}
+                    placeholder="name@organization.com"
+                    className="w-full px-4 py-3.5 bg-white border border-[#111111]/15 text-[#111111] placeholder-[#777777]/50 text-sm font-name-sans focus:outline-none focus:border-[#111111] transition-colors"
                   />
-                  {errors.email && (
-                    <span className="text-[11px] text-red-500 mt-1 flex items-center space-x-1 font-sans">
-                      <AlertCircle className="w-3 h-3" />
-                      <span>{errors.email}</span>
-                    </span>
-                  )}
+                  {errors.email && <p className="text-red-500 text-xs mt-1.5 font-name-sans">{errors.email}</p>}
                 </div>
 
+                {/* Project Type */}
                 <div>
-                  <label
-                    htmlFor="projectType"
-                    className="block text-xs uppercase tracking-editorial text-editorial-gray font-sans mb-2 font-medium"
-                  >
+                  <label className="block text-[11px] font-bold uppercase tracking-[0.2em] text-[#111111] font-name-sans mb-2">
                     PROJECT TYPE
                   </label>
                   <select
-                    id="projectType"
                     name="projectType"
                     value={formData.projectType}
                     onChange={handleChange}
-                    className="w-full bg-editorial-bg border border-editorial-border px-4 py-3.5 text-sm text-editorial-black font-sans focus:outline-none focus:border-editorial-accent transition-colors"
+                    className="w-full px-4 py-3.5 bg-white border border-[#111111]/15 text-[#111111] text-sm font-name-sans focus:outline-none focus:border-[#111111] transition-colors"
                   >
-                    {PROJECT_TYPES.map((type) => (
-                      <option key={type} value={type} className="bg-white text-editorial-black">
+                    {contact.projectTypes.map((type) => (
+                      <option key={type} value={type}>
                         {type}
                       </option>
                     ))}
                   </select>
                 </div>
 
+                {/* Message */}
                 <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-xs uppercase tracking-editorial text-editorial-gray font-sans mb-2 font-medium"
-                  >
-                    MESSAGE *
+                  <label className="block text-[11px] font-bold uppercase tracking-[0.2em] text-[#111111] font-name-sans mb-2">
+                    MESSAGE / PROJECT BRIEF *
                   </label>
                   <textarea
-                    id="message"
                     name="message"
-                    rows={4}
+                    rows="4"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell us about the photoshoot dates, concept, location, and requirements..."
-                    className={`w-full bg-editorial-bg border px-4 py-3.5 text-sm text-editorial-black font-sans placeholder-editorial-gray/40 focus:outline-none transition-colors ${
-                      errors.message ? 'border-red-400 focus:border-red-500' : 'border-editorial-border focus:border-editorial-accent'
-                    }`}
+                    placeholder="Tell us about the project dates, scope, and vision..."
+                    className="w-full px-4 py-3.5 bg-white border border-[#111111]/15 text-[#111111] placeholder-[#777777]/50 text-sm font-name-sans focus:outline-none focus:border-[#111111] transition-colors resize-none"
                   />
-                  {errors.message && (
-                    <span className="text-[11px] text-red-500 mt-1 flex items-center space-x-1 font-sans">
-                      <AlertCircle className="w-3 h-3" />
-                      <span>{errors.message}</span>
-                    </span>
-                  )}
+                  {errors.message && <p className="text-red-500 text-xs mt-1.5 font-name-sans">{errors.message}</p>}
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-4 bg-editorial-black text-white hover:bg-editorial-accent transition-all duration-300 font-sans text-xs uppercase tracking-widest font-medium flex items-center justify-center space-x-3 group disabled:opacity-50 shadow-sm"
-                >
-                  {isSubmitting ? (
-                    <span>SENDING INQUIRY...</span>
-                  ) : (
-                    <>
-                      <span>SUBMIT INQUIRY</span>
-                      <Send className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                    </>
+                {/* Buttons */}
+                <div className="pt-2 flex flex-col sm:flex-row gap-4 items-center justify-between">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full sm:w-auto px-8 py-4 bg-[#111111] text-white hover:bg-[#FFAD5A] hover:text-[#111111] transition-all font-name-sans text-xs uppercase tracking-[0.22em] font-bold flex items-center justify-center space-x-2 shadow-sm disabled:opacity-50"
+                  >
+                    <span>{isSubmitting ? 'TRANSMITTING...' : 'SEND ENQUIRY'}</span>
+                    <Send className="w-3.5 h-3.5" />
+                  </button>
+
+                  <a
+                    href={`mailto:${contact.email}?subject=Booking Inquiry`}
+                    className="text-xs uppercase tracking-[0.2em] text-[#777777] hover:text-[#111111] font-name-sans font-semibold underline underline-offset-4"
+                  >
+                    BOOK / COLLABORATE →
+                  </a>
+                </div>
+
+                {/* Success Message Feedback */}
+                <AnimatePresence>
+                  {submitted && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-name-sans flex items-center space-x-2.5"
+                    >
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                      <span>Thank you. Your message has been received by Shilpa Seetharaman's management team.</span>
+                    </motion.div>
                   )}
-                </button>
+                </AnimatePresence>
               </form>
             </div>
           </div>
+
         </div>
       </div>
     </section>

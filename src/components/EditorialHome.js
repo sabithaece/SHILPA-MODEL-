@@ -4,22 +4,22 @@ import { MODEL_TRANSPARENT_IMAGE } from '../constants/assets';
 
 export default function EditorialHome() {
   return (
-    <main className="relative min-h-screen w-full bg-[#FFAD5A] text-[#171717] flex items-center justify-center overflow-x-hidden px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-8 sm:py-12 lg:py-6">
+    <section id="home" className="relative min-h-screen w-full bg-[#FFAD5A] text-[#171717] flex items-center justify-center overflow-x-hidden px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-16 sm:py-20 lg:py-8 pt-24 sm:pt-28 lg:pt-20">
       {/* Centered Hero Container */}
       <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-8 sm:gap-10 lg:gap-12 xl:gap-16">
         
-        {/* LEFT COLUMN: Model Photograph */}
+        {/* LEFT COLUMN: Model Photograph (Enhanced Scale & Positioned toward the Left) */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full lg:w-1/2 flex items-end justify-center lg:justify-end relative z-10 order-1"
+          className="w-full lg:w-1/2 flex items-end justify-center lg:justify-start lg:pl-2 xl:pl-6 relative z-10 order-1"
         >
-          <div className="relative w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[540px] xl:max-w-[580px] flex items-end justify-center lg:justify-end">
+          <div className="relative w-full max-w-[460px] sm:max-w-[540px] lg:max-w-[620px] xl:max-w-[660px] flex items-end justify-center lg:justify-start">
             <img
               src={MODEL_TRANSPARENT_IMAGE}
-              alt="Shilpa Seetharaman - CEO & Founder, Vogue Modeling Company"
-              className="w-auto h-auto max-h-[50vh] sm:max-h-[60vh] lg:max-h-[78vh] xl:max-h-[82vh] object-contain object-bottom drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] select-none pointer-events-none"
+              alt="Shilpa Seetharaman - CEO & Founder, Vogue Modeling Company & Rise Academy"
+              className="w-auto h-auto max-h-[55vh] sm:max-h-[68vh] lg:max-h-[85vh] xl:max-h-[88vh] 2xl:max-h-[90vh] object-contain object-bottom drop-shadow-[0_18px_35px_rgba(0,0,0,0.13)] select-none pointer-events-none"
               loading="eager"
             />
           </div>
@@ -46,7 +46,7 @@ export default function EditorialHome() {
               CEO &amp; FOUNDER
             </p>
             <p className="font-name-sans text-xs sm:text-sm md:text-[0.95rem] font-bold tracking-[0.24em] text-[#171717]/90 uppercase leading-relaxed">
-              VOGUE MODELING COMPANY
+              VOGUE MODELING COMPANY &amp; RISE ACADEMY
             </p>
           </div>
 
@@ -63,6 +63,21 @@ export default function EditorialHome() {
         </motion.div>
 
       </div>
-    </main>
+
+      {/* Subtle Scroll Indicator */}
+      <motion.a
+        href="#about"
+        initial={{ opacity: 0, y: -6 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, delay: 0.6, repeat: Infinity, repeatType: "reverse" }}
+        className="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-[#171717]/70 hover:text-[#171717] transition-colors cursor-pointer group z-20 select-none"
+        aria-label="Scroll to explore About section"
+      >
+        <span className="font-name-sans text-[10px] sm:text-xs font-semibold tracking-[0.26em] uppercase">
+          SCROLL TO EXPLORE
+        </span>
+        <span className="text-xs sm:text-sm group-hover:translate-y-0.5 transition-transform">↓</span>
+      </motion.a>
+    </section>
   );
 }

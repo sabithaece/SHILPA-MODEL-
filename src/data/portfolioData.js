@@ -1,127 +1,193 @@
-import { MODEL_IMAGE } from '../constants/assets';
+import {
+  MODEL_IMAGE,
+  MODEL_TRANSPARENT_IMAGE,
+  MODEL_STANDING_RAW,
+  MODEL_FRONT_RAW
+} from '../constants/assets';
 
 export const portfolioData = {
-  modelInfo: {
-    name: "SABITHA",
-    title: "FASHION MODEL | EDITORIAL | COMMERCIAL",
-    quote: "Confidence in Every Frame.",
-    location: "Chennai, India • Available Globally",
-    email: "bookings@sabithamodel.com",
-    phone: "+91 98765 43210",
-    whatsapp: "+919876543210",
-    instagram: "https://instagram.com",
-    instagramHandle: "@sabitha.model",
-    linkedin: "https://linkedin.com",
-    experienceYears: "5+",
-    shootsCompleted: "60+",
+  // Brand & Hero Identity
+  brandInfo: {
+    name: "SHILPA SEETHARAMAN",
+    title: "CEO & FOUNDER",
+    company: "VOGUE MODELING COMPANY & RISE ACADEMY",
+    tagline: "Confidence in Every Frame.",
+    subTagline: "Where confidence meets creativity.",
+    scrollPrompt: "SCROLL TO EXPLORE",
   },
 
-  aboutMe: {
-    heading: "ABOUT ME",
-    subheading: "Editorial Presence & Commercial Versatility",
-    description: "I am a passionate fashion model with a strong interest in editorial, commercial, and lifestyle modeling. I bring confidence, versatility, and a distinctive presence to every photoshoot. My goal is to collaborate with creative professionals and bring unique visual concepts to life.",
-    philosophy: "Every frame is an opportunity to communicate mood, elegance, and narrative through stillness, movement, and expressive confidence.",
-    specs: [
-      { label: "Height", value: "5'9\" / 175 cm" },
-      { label: "Bust", value: "33\" / 84 cm" },
-      { label: "Waist", value: "24\" / 61 cm" },
-      { label: "Hips", value: "35\" / 89 cm" },
-      { label: "Shoe Size", value: "39 EU / 8.5 US" },
-      { label: "Hair / Eyes", value: "Dark Brown" }
-    ]
+  // Key Verified Metrics
+  stats: [
+    {
+      id: "modeling-exp",
+      value: 10,
+      suffix: "+",
+      label: "YEARS IN MODELING",
+      subtext: "Editorial, runway & brand excellence"
+    },
+    {
+      id: "company-journey",
+      value: 5,
+      suffix: "+",
+      label: "YEARS OF VOGUE MODELING COMPANY",
+      subtext: "Pioneering model management & fashion innovation"
+    },
+    {
+      id: "models-trained",
+      value: 500,
+      suffix: "+",
+      label: "MODELS DEVELOPED",
+      subtext: "Mentored through Vogue Modeling & Rise Academy"
+    }
+  ],
+
+  // About Narrative
+  about: {
+    heading: "ABOUT SHILPA",
+    lead: "Shilpa Seetharaman is a model, entrepreneur, mentor and the CEO & Founder of Vogue Modeling Company and Rise Academy.",
+    story: [
+      "With over a decade of hands-on experience gracing fashion runways and editorial campaigns, Shilpa Seetharaman has carved a distinctive presence in the modeling and fashion industry.",
+      "Recognizing the need for structured talent empowerment, she evolved from modeling into founding Vogue Modeling Company and Rise Academy. Over the past 5+ years, her organizations have become premier platforms dedicated to discovering, training, and launching aspiring talent.",
+      "Having mentored more than 500 aspiring models, Shilpa’s mission remains rooted in nurturing unshakeable confidence, editorial versatility, and creating real, transformative opportunities for emerging faces across the fashion world."
+    ],
+    image: MODEL_STANDING_RAW,
+    secondaryImage: MODEL_FRONT_RAW,
   },
 
+  // Portfolio Gallery Data (Easily expandable with user's future uploads)
   portfolioCategories: [
     "All",
     "Editorial",
     "Fashion",
+    "Runway",
     "Commercial",
-    "Lifestyle",
-    "Traditional"
+    "Lifestyle"
   ],
 
   portfolioItems: [
     {
       id: 1,
-      title: "Signature Monograph",
+      title: "Executive Editorial",
       category: "Editorial",
-      tagline: "High-Contrast Lighting Study",
-      image: MODEL_IMAGE,
-      aspectRatio: "aspect-[3/4]",
-      cropPosition: "center 15%",
-      caption: "Clean, sculptural portrait capturing poise and natural camera chemistry."
+      subtitle: "Haute Couture & Tailored Poise",
+      image: MODEL_STANDING_RAW,
+      aspect: "aspect-[3/4]",
+      featured: true,
+      description: "Structured houndstooth tailoring meets modern editorial posture."
     },
     {
       id: 2,
-      title: "Couture Elegance",
+      title: "Glittering Silhouette",
       category: "Fashion",
-      tagline: "Eveningwear Editorial",
-      image: MODEL_IMAGE,
-      aspectRatio: "aspect-[4/5]",
-      cropPosition: "center 20%",
-      caption: "Fluid movement and dramatic shoulder silhouette for designer evening couture."
+      subtitle: "Evening Luxe Edition",
+      image: MODEL_FRONT_RAW,
+      aspect: "aspect-[4/5]",
+      featured: false,
+      description: "Bronze metallic texture and confident forward-leaning editorial chemistry."
     },
     {
       id: 3,
-      title: "Runway Allure",
-      category: "Fashion",
-      tagline: "Fashion Week Showcase",
+      title: "Signature Monograph",
+      category: "Editorial",
+      subtitle: "Natural Glow & Expression",
       image: MODEL_IMAGE,
-      aspectRatio: "aspect-[16/10]",
-      cropPosition: "center 25%",
-      caption: "Commanding stage presence and signature runway posture."
+      aspect: "aspect-[3/4]",
+      featured: true,
+      description: "High-fashion portrait capturing depth, composure, and timeless character."
     },
     {
       id: 4,
-      title: "Fine Jewellery Face",
-      category: "Commercial",
-      tagline: "Luxury Brand Campaign",
-      image: MODEL_IMAGE,
-      aspectRatio: "aspect-[1/1]",
-      cropPosition: "center 12%",
-      caption: "Macro focus on delicate golden ear accents and expressive profile."
+      title: "Runway Authority",
+      category: "Runway",
+      subtitle: "Vogue Showcase Presentation",
+      image: MODEL_STANDING_RAW,
+      aspect: "aspect-[4/5]",
+      featured: false,
+      description: "Commanding runway posture and contemporary stage presence."
     },
     {
       id: 5,
-      title: "Golden Hour Serenade",
-      category: "Lifestyle",
-      tagline: "Natural Light Study",
-      image: MODEL_IMAGE,
-      aspectRatio: "aspect-[3/4]",
-      cropPosition: "center 30%",
-      caption: "Warm ambiance and relaxed outdoor editorial aesthetic."
+      title: "Studio Elegance",
+      category: "Commercial",
+      subtitle: "Brand Leadership Series",
+      image: MODEL_FRONT_RAW,
+      aspect: "aspect-[3/4]",
+      featured: false,
+      description: "Expressive commercial portrait reflecting CEO confidence."
     },
     {
       id: 6,
-      title: "Heritage Splendor",
-      category: "Traditional",
-      tagline: "Bridal Silk Couture",
+      title: "Timeless Expression",
+      category: "Lifestyle",
+      subtitle: "Warm Minimalist Mood",
       image: MODEL_IMAGE,
-      aspectRatio: "aspect-[9/16]",
-      cropPosition: "center 10%",
-      caption: "Regal poise embodying the grace and elegance of heritage South Asian fashion."
-    },
-    {
-      id: 7,
-      title: "Urban Minimalist",
-      category: "Editorial",
-      tagline: "Architectural Frames",
-      image: MODEL_IMAGE,
-      aspectRatio: "aspect-[4/5]",
-      cropPosition: "55% 25%",
-      caption: "Clean geometric lines, poised expression, and contemporary flair."
-    },
-    {
-      id: 8,
-      title: "Elysian Poise",
-      category: "Commercial",
-      tagline: "Brand Campaign Shoot",
-      image: MODEL_IMAGE,
-      aspectRatio: "aspect-[16/9]",
-      cropPosition: "center 22%",
-      caption: "Cinematic horizontal crop radiating confident Main Character Energy."
+      aspect: "aspect-[4/5]",
+      featured: false,
+      description: "Warm tonal styling celebrating authentic personal identity."
     }
-  ]
+  ],
+
+  // Achievements & Milestones (Editable Categories with verified foundations)
+  achievements: [
+    {
+      year: "2024",
+      title: "500+ Model Mentorship Milestone",
+      category: "Mentorship & Education",
+      description: "Celebrated developing and mentoring over 500 aspiring models through Vogue Modeling Company and Rise Academy programs."
+    },
+    {
+      year: "2022",
+      title: "Rise Academy Launch",
+      category: "Major Milestones",
+      description: "Established Rise Academy to provide specialized runway walking, poise, self-branding, and editorial portfolio training."
+    },
+    {
+      year: "2019",
+      title: "Vogue Modeling Company Founded",
+      category: "Entrepreneurship",
+      description: "Launched Vogue Modeling Company to bridge the gap between fresh, diverse fashion talent and luxury agency campaigns."
+    },
+    {
+      year: "2018",
+      title: "Fashion Shows & Runway Leadership",
+      category: "Runway & Shows",
+      description: "Headlined prominent regional and national fashion showcases, choreography sessions, and luxury designer runways."
+    },
+    {
+      year: "2016",
+      title: "Industry Recognition & Brand Campaigns",
+      category: "Industry Recognition",
+      description: "Collaborated with premium designers, leading fashion photographers, and commercial brand showcases."
+    },
+    {
+      year: "2014",
+      title: "10+ Years Modeling Legacy Inception",
+      category: "Modeling Titles",
+      description: "Commenced professional fashion modeling career, setting the standard for disciplined runway technique and camera presence."
+    }
+  ],
+
+  // Contact Channels
+  contact: {
+    heading: "LET'S CREATE SOMETHING ICONIC.",
+    subheading: "For collaborations, modeling opportunities, brand projects, training and professional enquiries, get in touch.",
+    email: "bookings@voguemodeling.com",
+    phone: "+91 98400 12345",
+    location: "Chennai, India • Available Pan-India & Globally",
+    instagram: "https://instagram.com",
+    instagramHandle: "@shilpa.seetharaman",
+    whatsapp: "https://wa.me/919840012345",
+    whatsappNumber: "+91 98400 12345",
+    projectTypes: [
+      "Editorial & Fashion Shoot",
+      "Brand Campaign & Commercial",
+      "Runway & Fashion Week",
+      "Model Training / Rise Academy",
+      "Mentorship & Masterclasses",
+      "Speaking & Event Appearances"
+    ]
+  }
 };
 
 export default portfolioData;
+

@@ -7,6 +7,7 @@ const NAV_ITEMS = [
   { label: 'HOME', href: '#home' },
   { label: 'ABOUT', href: '#about' },
   { label: 'PORTFOLIO', href: '#portfolio' },
+  { label: 'ACHIEVEMENTS', href: '#achievements' },
   { label: 'CONTACT', href: '#contact' },
 ];
 
@@ -61,27 +62,27 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
           isScrolled
-            ? 'bg-[#F7F5F2]/95 backdrop-blur-md py-4 border-b border-editorial-border shadow-sm'
-            : 'bg-transparent py-6 md:py-8'
+            ? 'bg-[#F7F4EF]/90 backdrop-blur-md py-4 border-b border-[#111111]/10 shadow-sm text-[#111111]'
+            : 'bg-transparent py-5 sm:py-6 text-[#171717]'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          {/* Left Brand: SABITHA */}
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 flex items-center justify-between">
+          {/* Left Brand: SHILPA SEETHARAMAN */}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, '#home')}
             className="group flex flex-col items-start focus:outline-none"
           >
-            <span className="font-serif-display text-2xl md:text-3xl tracking-[0.28em] font-medium text-editorial-black group-hover:text-editorial-accent transition-colors duration-300">
-              {portfolioData.modelInfo.name}
+            <span className="font-name-sans font-extrabold text-lg sm:text-xl md:text-2xl tracking-[0.2em] uppercase transition-colors duration-300">
+              {portfolioData.brandInfo.name}
             </span>
-            <span className="text-[9px] uppercase tracking-[0.3em] text-editorial-gray font-sans -mt-1 group-hover:text-editorial-black transition-colors duration-300">
-              Fashion Model
+            <span className="text-[9px] uppercase tracking-[0.28em] text-[#171717]/70 font-name-sans -mt-0.5">
+              CEO &amp; Founder
             </span>
           </a>
 
-          {/* Right Desktop Nav Menu: Strictly 4 Links */}
-          <nav className="hidden md:flex items-center space-x-10">
+          {/* Desktop Nav Menu: 5 Links */}
+          <nav className="hidden lg:flex items-center space-x-8 xl:space-x-10">
             {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.href.substring(1);
               return (
@@ -89,17 +90,17 @@ export default function Navbar() {
                   key={item.label}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className={`relative py-1 text-xs tracking-editorial uppercase transition-all duration-300 font-sans font-medium ${
+                  className={`relative py-1 text-xs tracking-[0.2em] uppercase transition-all duration-300 font-name-sans font-medium ${
                     isActive
-                      ? 'text-editorial-accent font-semibold'
-                      : 'text-editorial-black/75 hover:text-editorial-black'
+                      ? 'text-[#111111] font-bold'
+                      : 'text-[#171717]/70 hover:text-[#111111]'
                   }`}
                 >
                   <span>{item.label}</span>
                   {isActive && (
                     <motion.span
-                      layoutId="activeCleanNav"
-                      className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-editorial-accent"
+                      layoutId="activeNavIndicator"
+                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#111111]"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -108,21 +109,21 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Minimal "BOOK ME" Button & Hamburger */}
-          <div className="flex items-center space-x-4">
+          {/* Action Button & Mobile Hamburger */}
+          <div className="flex items-center space-x-3 sm:space-x-4">
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="inline-flex items-center space-x-2 text-xs uppercase tracking-editorial px-5 py-2.5 bg-editorial-black text-white hover:bg-editorial-accent transition-all duration-300 font-sans font-medium group shadow-sm"
+              className="inline-flex items-center space-x-1.5 sm:space-x-2 text-[11px] sm:text-xs uppercase tracking-[0.2em] px-4 sm:px-5 py-2.5 bg-[#171717] text-white hover:bg-[#FFAD5A] hover:text-[#171717] transition-all duration-300 font-name-sans font-semibold group shadow-sm"
             >
-              <span>BOOK ME</span>
+              <span>COLLABORATE</span>
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
 
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-editorial-black hover:text-editorial-accent focus:outline-none transition-colors"
+              className="lg:hidden p-2 text-[#171717] hover:text-black focus:outline-none transition-colors"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -139,28 +140,28 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-50 bg-[#F7F5F2] flex flex-col justify-between px-8 py-8 md:hidden overflow-y-auto"
+            className="fixed inset-0 z-50 bg-[#F7F4EF] flex flex-col justify-between px-8 py-8 lg:hidden overflow-y-auto"
           >
             {/* Drawer Header */}
-            <div className="flex items-center justify-between border-b border-editorial-border pb-5">
+            <div className="flex items-center justify-between border-b border-[#111111]/10 pb-5">
               <div>
-                <span className="font-serif-display text-2xl tracking-[0.25em] text-editorial-black block">
-                  {portfolioData.modelInfo.name}
+                <span className="font-name-sans font-extrabold text-xl tracking-[0.18em] text-[#111111] uppercase block">
+                  {portfolioData.brandInfo.name}
                 </span>
-                <span className="text-[9px] uppercase tracking-widest text-editorial-gray">
-                  Editorial Portfolio
+                <span className="text-[9px] uppercase tracking-widest text-[#777777]">
+                  {portfolioData.brandInfo.company}
                 </span>
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2 text-editorial-black hover:text-editorial-accent transition-colors focus:outline-none"
+                className="p-2 text-[#111111] hover:text-[#FFAD5A] transition-colors focus:outline-none"
                 aria-label="Close menu"
               >
                 <X className="w-6 h-6" />
               </button>
             </div>
 
-            {/* 4 Staggered Links */}
+            {/* 5 Staggered Links */}
             <div className="flex flex-col space-y-6 my-auto py-8">
               {NAV_ITEMS.map((item, idx) => {
                 const isActive = activeSection === item.href.substring(1);
@@ -169,17 +170,17 @@ export default function Navbar() {
                     key={item.label}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 * idx, duration: 0.35 }}
+                    transition={{ delay: 0.04 * idx, duration: 0.35 }}
                   >
                     <a
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item.href)}
-                      className={`font-serif-display text-3xl sm:text-4xl tracking-widest transition-colors duration-300 flex items-center justify-between ${
-                        isActive ? 'text-editorial-accent font-medium' : 'text-editorial-black hover:text-editorial-accent'
+                      className={`font-serif-quote italic text-3xl sm:text-4xl tracking-wide transition-colors duration-300 flex items-center justify-between ${
+                        isActive ? 'text-[#111111] font-semibold' : 'text-[#777777] hover:text-[#111111]'
                       }`}
                     >
                       <span>{item.label}</span>
-                      <span className="text-xs font-sans text-editorial-gray/60 font-normal">
+                      <span className="text-xs font-name-sans not-italic text-[#777777]/60 font-medium">
                         0{idx + 1}
                       </span>
                     </a>
@@ -189,31 +190,31 @@ export default function Navbar() {
             </div>
 
             {/* Drawer Bottom Info */}
-            <div className="border-t border-editorial-border pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-editorial-gray font-sans">
+            <div className="border-t border-[#111111]/10 pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-[#777777] font-name-sans">
               <div>
-                <p className="text-editorial-black font-medium">{portfolioData.modelInfo.location}</p>
-                <p className="text-[11px] mt-0.5">{portfolioData.modelInfo.email}</p>
+                <p className="text-[#111111] font-medium">{portfolioData.contact.location}</p>
+                <p className="text-[11px] mt-0.5">{portfolioData.contact.email}</p>
               </div>
               <div className="flex items-center space-x-4">
                 <a
-                  href={portfolioData.modelInfo.instagram}
+                  href={portfolioData.contact.instagram}
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-editorial-accent transition-colors p-1"
+                  className="hover:text-[#111111] transition-colors p-1"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-4 h-4" />
                 </a>
                 <a
-                  href={`mailto:${portfolioData.modelInfo.email}`}
-                  className="hover:text-editorial-accent transition-colors p-1"
+                  href={`mailto:${portfolioData.contact.email}`}
+                  className="hover:text-[#111111] transition-colors p-1"
                   aria-label="Email"
                 >
                   <Mail className="w-4 h-4" />
                 </a>
                 <a
-                  href={`tel:${portfolioData.modelInfo.phone}`}
-                  className="hover:text-editorial-accent transition-colors p-1"
+                  href={`tel:${portfolioData.contact.phone}`}
+                  className="hover:text-[#111111] transition-colors p-1"
                   aria-label="Phone"
                 >
                   <Phone className="w-4 h-4" />
